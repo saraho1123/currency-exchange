@@ -7,6 +7,17 @@ import ExchangeContainer from '../ExchangeContainer/ExchangeContainer.js'
 const App = () => {
   const [currencyCards, setCurrencyCards] = useState([])
 
+  const addCurrencyCard = (newCurrencyCard) => {
+    setCurrencyCards([...currencyCards, newCurrencyCard])
+  }
+
+  const deleteCurrencyCard = (id) => {
+    const filteredCurrencyCards = currencyCards.filter(card => {
+      return card.id !== id
+    })
+    setCurrencyCards(filteredCurrencyCards)
+  }
+
   return (
     <main>
       <section>
