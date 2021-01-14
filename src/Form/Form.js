@@ -10,17 +10,23 @@ const Form = (props) => {
   const [userAmount, setUserAmount] = useState('')
   const [newCurrency, setNewCurrency] = useState('')
 
-  const submitExchangeData = event => {
-    event.preventDefault()
-    const newExchange = {
-      id: Date.now(),
-      userCurrency, 
-      userAmount,
-      newCurrency
-    }
-    props.addCurrencyCard(newExchange)
-    clearInputs()
+  const handleSearchChange = event => {
+    setUserCurrency(event.target.value)
+    setUserAmount(event.target.value)
+    setNewCurrency(event.target.value)
   }
+
+  useEffect(() => {
+    handleSearchChange()
+      // const newExchange = {
+      //   id: Date.now(),
+      //   userCurrency, 
+      //   userAmount,
+      //   newCurrency
+      // }
+      // props.addCurrencyCard(newExchange)
+      clearInputs()
+    }, [userCurrency, userAmount, newCurrency])
 
   const clearInputs = () => {
     setUserCurrency('')
@@ -36,7 +42,7 @@ const Form = (props) => {
           className='user-currency'
           placeholder='Type country of your currency'
           value={userCurrency}
-          onChange={event => setUserCurrency(event.target.value)}
+          onChange={event => handleSearchChange(event)}
         />
         <input           
         type='number'
@@ -45,23 +51,28 @@ const Form = (props) => {
           className='user-amount'
           placeholder='Amount to exchange (up to 10,000)'
           value={userAmount}
-          onChange={event => setUserAmount(event.target.value)}
+          onChange={handleSearchChange}
         />
         <input 
           type='text'
           className='new-currency'
           placeholder='Type country of currency you want'
           value={newCurrency}
-          onChange={event => setNewCurrency(event.target.value)}
+          onChange={handleSearchChange}
         />
       </form>
-      <NavLink to="/currency-cards" className="nav">Get Currency Conversion</NavLink>
+      <NavLink  to="/currency-cards" className="nav">Get Currency Conversion</NavLink>
 
     </section>
   )
 }
 
 /*
+
+NOTES FOR TOMORROW:
+useEffect is causing an endless loop
+right now, cannot read property target of undefined
+need to stop for the night as I am tired and will probably do better in the morning
 Form should take in user input and route to ExchangeContainer, passing the user input
 
 I think I should have a button to get to 'bookmarked' from here??
