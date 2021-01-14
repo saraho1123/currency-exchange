@@ -1,0 +1,30 @@
+a {
+  text-decoration: none;
+}
+
+a:focus {
+  text-decoration: none;
+  color: #A4D555;
+}
+
+.App {
+  text-align: center;
+  background: #30011E;
+}
+
+h1 {
+  text-align: center;
+}
+
+footer{
+  text-align: center;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
