@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import { Link, NavLink } from 'react-router-dom';
-import './Form.scss';
+import { Link, NavLink } from 'react-router-dom'
+import './Form.scss'
 import ExchangeContainer from '../ExchangeContainer/ExchangeContainer.js'
+import { getExchangeRates } from '../apiCalls.js'
+
 
 
 const Form = (props) => {
@@ -10,12 +12,14 @@ const Form = (props) => {
   const [userAmount, setUserAmount] = useState('')
   const [newCurrency, setNewCurrency] = useState('')
 
+
   const getUserData = () => {
     const newExchange = {
         id: Date.now(),
         userCurrency, 
         userAmount,
-        newCurrency
+        newCurrency,
+        // exchangeRate
       }
       props.addCurrencyCard(newExchange)
       clearInputs()
