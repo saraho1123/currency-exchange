@@ -1,21 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import './App.scss';
 import Form from '../Form/Form.js'
 import ExchangeContainer from '../ExchangeContainer/ExchangeContainer.js'
+import { getExchangeRates } from '../apiCalls.js'
+
 
 const App = () => {
-  const [currencyCards, setCurrencyCards] = useState([])
+  const [currencyInputData, setcurrencyInputData] = useState({})
 
-  const addCurrencyCard = (newCurrencyCard) => {
-    setCurrencyCards([...currencyCards, newCurrencyCard])
+
+  const addCurrencyCard = (newCurrencyCardInfo) => {
+    setcurrencyInputData(newCurrencyCardInfo)
   }
 
   const deleteCurrencyCard = (id) => {
-    const filteredCurrencyCards = currencyCards.filter(card => {
+    const filteredCurrencyCards = currencyInputData.filter(card => {
       return card.id !== id
     })
-    setCurrencyCards(filteredCurrencyCards)
+    setcurrencyInputData(filteredCurrencyCards)
   }
 
   return (
@@ -24,12 +27,13 @@ const App = () => {
       <h1>Currency Exchange</h1>
       <Switch>
         <Route 
-           
+          
           path='/currency-cards'
-          component={ ExchangeContainer }
-          // render={() => {
-          //   <ExchangeContainer currencyCards={currencyCards}/>
-          // }}
+          render={() => {
+            return(
+              <ExchangeContainer currencyInputData={currencyInputData}/>
+            )
+          }}
         />
         <Route
         exact
@@ -38,8 +42,7 @@ const App = () => {
           return (
             <Form 
               addCurrencyCard={addCurrencyCard} 
-              currencyCards={currencyCards} 
-              deleteCurrencyCard={deleteCurrencyCard}
+              // deleteCurrencyCard={deleteCurrencyCard}
             />
           )
         }}
