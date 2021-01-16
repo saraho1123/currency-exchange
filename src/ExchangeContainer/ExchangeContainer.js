@@ -7,38 +7,38 @@ import Bookmarked from '../Bookmarked/Bookmarked.js'
 import { getExchangeRates } from '../apiCalls.js'
 import { sampleApiData } from '../sampleApiData.js'
  
-const ExchangeContainer = ({ currencyData, exchangeRate, resetExchangeRate}) => {
+const ExchangeContainer = ({ fusedData, resetExchangeRate}) => {
+  console.log(fusedData.currencyData)
+  // const [newAmount, setNewAmount] = useState([])
 
+  //   const calculateNewAmount = (userAmount) => {
+  //   const calculatedAmount = Math.round(100 * exchangeRate)/100 * userAmount
+  //   setNewAmount([...newAmount, calculatedAmount])
+  // }
 
-  const calculateNewAmount = () => {
-    console.log(exchangeRate)
-    const newAmount = Math.round(100 * exchangeRate)/100 * currencyData.userAmount
-    // resetExchangeRate()
-    return newAmount
-  }
-
-  const currencyCards = currencyData.map(data => {
-    console.log(exchangeRate)
+  const currencyCards = fusedData.map(data => {
     return (
       <CurrencyCard 
-        id={data.id}
+        id={data.currencyData.id}
         key={data.id}
-        newAmount={calculateNewAmount()}
-        userCurrency={data.userCurrency}
-        userAmount={data.userAmount}
-        newCurrency={data.newCurrency}
-        exchangeRate={exchangeRate}
+        newAmount={data.newAmount}
+        userCurrency={data.currencyData.userCurrency}
+        userAmount={data.currencyData.newAmount}
+        newCurrency={data.currencyData.newCurrency}
+        exchangeRate={data.exchangeRate}
       />
     )
   })
 
   return (
+    fusedData &&
     <section className='container'>
       <h1 >This is the container for the currency cards</h1>
       { currencyCards }
       <NavLink to="/" className="nav">Get a new Currency Exchange!</NavLink>
 
     </section>
+    
   )
 }
 

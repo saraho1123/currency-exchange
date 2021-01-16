@@ -10,13 +10,13 @@ const App = () => {
   const [currencyData, setCurrencyData] = useState([])
   const [userInput, setUserInput] = useState(false)
   const [exchangeRate, setExchangeRate] = useState(null)
+  // const [fusedData, setFusedData] = useState([])
 
   const addCurrencyCard = (newCurrencyCardInfo, userInput) => {
     
     setCurrencyData([...currencyData, newCurrencyCardInfo])
     // console.log('new currency', currencyData/*[(currencyData.length) - 1]*/)
     setUserInput(true)
-    // getExchangeData()
   }
 
   const deleteCurrencyCard = (id) => {
@@ -33,7 +33,7 @@ const App = () => {
       .then(data =>  {
         console.log('new currency', currencyData[currencyData.length - 1].newCurrency)
         setExchangeRate(data.rates[currencyData[currencyData.length - 1].newCurrency])
-        // getUserData(userCurrency, userAmount, newCurrency)
+        consolidateData()
       })
       .catch(error => console.log(error))
     }
@@ -56,22 +56,24 @@ const App = () => {
     setExchangeRate(null)
   }
 
-  // const calculateNewAmount = (userAmount) => {
-  //   const newAmount = Math.round(100 * exchangeRate)/100 * userAmount
-  //   return newAmount
-  // }
+  const calculateNewAmount = () => {
+    const newAmount = Math.round(100 * exchangeRate)/100 * currencyData[currencyData.length - 1].userAmount
+    return newAmount
+  }
 
-  // const getUserData = (userCurrency, userAmount, newCurrency) => {
-  //   const newExchange = {
-  //     id: Date.now(),
-  //     // newAmount: calculateNewAmount(userAmount),
-  //     userCurrency, 
-  //     userAmount,
-  //     newCurrency,
-  //     // exchangeRate
-  //   }
-  //   addCurrencyCard(newExchange)
-  // }
+  const consolidateData = () => {
+    const calculatedAmount = calculateNewAmount()
+    const newFusedData = {
+      // id: currencyData.id,
+      newAmount: calculatedAmount,
+      // userCurrency: currencyData.userCurrency, 
+      // userAmount: currencyData.userAmount,
+      // newCurrency: currencyData.newCurrency,
+      currencyData,
+      exchangeRate
+    }
+    return [newFusedData]
+  }
 
   return (
     <main>
@@ -85,8 +87,9 @@ const App = () => {
             return(
               exchangeRate  &&
               <ExchangeContainer 
-                currencyData={currencyData} 
-                exchangeRate={exchangeRate}
+                fusedData={consolidateData()}
+                // currencyData={currencyData} 
+                // exchangeRate={exchangeRate}
                 resetExchangeRate={resetExchangeRate} 
               />
             )
