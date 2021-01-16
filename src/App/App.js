@@ -7,18 +7,17 @@ import { getExchangeRates } from '../apiCalls.js'
 
 
 const App = () => {
-  const [currencyInputData, setcurrencyInputData] = useState({})
-
+  const [currencyData, setcurrencyData] = useState([])
 
   const addCurrencyCard = (newCurrencyCardInfo) => {
-    setcurrencyInputData(newCurrencyCardInfo)
+    setcurrencyData([...currencyData, newCurrencyCardInfo])
   }
 
   const deleteCurrencyCard = (id) => {
-    const filteredCurrencyCards = currencyInputData.filter(card => {
+    const filteredCurrencyCards = currencyData.filter(card => {
       return card.id !== id
     })
-    setcurrencyInputData(filteredCurrencyCards)
+    setcurrencyData(filteredCurrencyCards)
   }
 
   return (
@@ -31,7 +30,7 @@ const App = () => {
           path='/currency-cards'
           render={() => {
             return(
-              <ExchangeContainer currencyInputData={currencyInputData}/>
+              <ExchangeContainer currencyData={currencyData}/>
             )
           }}
         />
