@@ -9,38 +9,43 @@ const Form = (props) => {
   const [userCurrency, setUserCurrency] = useState('')
   const [userAmount, setUserAmount] = useState('')
   const [newCurrency, setNewCurrency] = useState('')
-  const [exchangeRate, setExchangeRate] = useState(null)
+  // const [exchangeRate, setExchangeRate] = useState(null)
 
-  const getExchangeData = async (event) => {
-    event.preventDefault()
-    await getExchangeRates(userCurrency)
-    .then(data =>  {
-      setExchangeRate(data.rates[newCurrency])
-      console.log(exchangeRate)
-      getUserData()
-    })
-  }
+  // const getExchangeData = (event) => {
+  //   event.preventDefault()
+  //    getExchangeRates(userCurrency)
+  //   .then(data =>  {
+  //     setExchangeRate(data.rates[newCurrency])
+  //     console.log(exchangeRate)
+  //     getUserData()
+  //   })
+  // }
 
+  // const calculateNewAmount = () => {
+  //   const newAmount = Math.round(100 * exchangeRate)/100 * userAmount
+  //   return newAmount
+  // }
 
-
-
-  const calculateNewAmount = () => {
-    const newAmount = Math.round(100 * exchangeRate)/100 * userAmount
-    return newAmount
-  }
-
-  const getUserData = () => {
+  const getUserData = async () => {
+    // event.preventDefault()
     const newExchange = {
       id: Date.now(),
-      newAmount: calculateNewAmount(),
+      // newAmount: calculateNewAmount(),
       userCurrency, 
       userAmount,
       newCurrency,
-      exchangeRate
+      // exchangeRate
     }
-    props.addCurrencyCard(newExchange)
+    await props.addCurrencyCard(newExchange)
+    // props.getExchangeData(userCurrency)
     clearInputs()
   }
+
+  // const submitData = async (event) => {
+  //   event.preventDefault()
+  //   await props.getExchangeData(userCurrency, userAmount, newCurrency)
+  //   clearInputs()
+  // }
 
   const clearInputs = () => {
     setUserCurrency('')
@@ -48,9 +53,9 @@ const Form = (props) => {
     setNewCurrency('')
   }
 
-  const returnRedirect = () => {
-    return <Redirect to='/currency-exchange' />
-  }
+    // const returnRedirect = () => {
+    //   return <Redirect to='/currency-exchange' />
+    // }
   
 
   const toInputUppercase = e => {
@@ -59,7 +64,7 @@ const Form = (props) => {
   
   return (
     <section >
-      <form onSubmit={event => getExchangeData(event)} className='user-input'>
+      <form /* onSubmit={event => getUserData(event)}*/ className='user-input'>
         <input 
           type='text'
           className='user-currency'
@@ -85,11 +90,11 @@ const Form = (props) => {
           value={newCurrency}
           onChange={(event) => setNewCurrency(event.target.value)}
         />
-        <NavLink to="/currency-cards" className="nav">
-          <input
+        <NavLink onClick={getUserData} to="/currency-cards" className="nav">Get Currency Conversion 
+          {/* <input
             type='submit'
             value='Get Currency Conversion'   
-          />
+          /> */}
         </NavLink>
       </form>
       

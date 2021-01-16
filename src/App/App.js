@@ -7,18 +7,71 @@ import { getExchangeRates } from '../apiCalls.js'
 
 
 const App = () => {
-  const [currencyData, setcurrencyData] = useState([])
+  const [currencyData, setCurrencyData] = useState([])
+  const [userInput, setUserInput] = useState(false)
+  const [exchangeRate, setExchangeRate] = useState(null)
 
-  const addCurrencyCard = (newCurrencyCardInfo) => {
-    setcurrencyData([...currencyData, newCurrencyCardInfo])
+  const addCurrencyCard = (newCurrencyCardInfo, userInput) => {
+    
+    setCurrencyData([...currencyData, newCurrencyCardInfo])
+    // console.log('new currency', currencyData/*[(currencyData.length) - 1]*/)
+    setUserInput(true)
+    // getExchangeData()
   }
 
   const deleteCurrencyCard = (id) => {
     const filteredCurrencyCards = currencyData.filter(card => {
       return card.id !== id
     })
-    setcurrencyData(filteredCurrencyCards)
+    setCurrencyData(filteredCurrencyCards)
   }
+
+  useEffect(() => {
+    if(userInput) {
+      console.log(currencyData[currencyData.length - 1].userCurrency)
+      getExchangeRates(currencyData[currencyData.length - 1].userCurrency)
+      .then(data =>  {
+        console.log('new currency', currencyData[currencyData.length - 1].newCurrency)
+        setExchangeRate(data.rates[currencyData[currencyData.length - 1].newCurrency])
+        // getUserData(userCurrency, userAmount, newCurrency)
+      })
+      .catch(error => console.log(error))
+    }
+ }, [currencyData])
+
+  // const getExchangeData = () => {
+  //   if(userInput) {
+  //     console.log('new currency', currencyData)
+  //     getExchangeRates(currencyData[currencyData.length - 1].userCurrency)
+  //     .then(data =>  {
+  //       setExchangeRate(data.rates[currencyData.newCurrency])
+  //       // getUserData(userCurrency, userAmount, newCurrency)
+  //     })
+  //     .catch(error => console.log(error))
+  //   }
+  // }
+
+  const resetExchangeRate = () => {
+    setUserInput(false)
+    setExchangeRate(null)
+  }
+
+  // const calculateNewAmount = (userAmount) => {
+  //   const newAmount = Math.round(100 * exchangeRate)/100 * userAmount
+  //   return newAmount
+  // }
+
+  // const getUserData = (userCurrency, userAmount, newCurrency) => {
+  //   const newExchange = {
+  //     id: Date.now(),
+  //     // newAmount: calculateNewAmount(userAmount),
+  //     userCurrency, 
+  //     userAmount,
+  //     newCurrency,
+  //     // exchangeRate
+  //   }
+  //   addCurrencyCard(newExchange)
+  // }
 
   return (
     <main>
@@ -30,7 +83,12 @@ const App = () => {
           path='/currency-cards'
           render={() => {
             return(
-              <ExchangeContainer currencyData={currencyData}/>
+              exchangeRate  &&
+              <ExchangeContainer 
+                currencyData={currencyData} 
+                exchangeRate={exchangeRate}
+                resetExchangeRate={resetExchangeRate} 
+              />
             )
           }}
         />
@@ -41,6 +99,7 @@ const App = () => {
           return (
             <Form 
               addCurrencyCard={addCurrencyCard} 
+              resetExchangeRate={resetExchangeRate}
               // deleteCurrencyCard={deleteCurrencyCard}
             />
           )

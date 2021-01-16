@@ -7,18 +7,27 @@ import Bookmarked from '../Bookmarked/Bookmarked.js'
 import { getExchangeRates } from '../apiCalls.js'
 import { sampleApiData } from '../sampleApiData.js'
  
-const ExchangeContainer = ({ currencyData }) => {
+const ExchangeContainer = ({ currencyData, exchangeRate, resetExchangeRate}) => {
+
+
+  const calculateNewAmount = () => {
+    console.log(exchangeRate)
+    const newAmount = Math.round(100 * exchangeRate)/100 * currencyData.userAmount
+    // resetExchangeRate()
+    return newAmount
+  }
 
   const currencyCards = currencyData.map(data => {
+    console.log(exchangeRate)
     return (
       <CurrencyCard 
         id={data.id}
         key={data.id}
-        newAmount={data.newAmount}
+        newAmount={calculateNewAmount()}
         userCurrency={data.userCurrency}
         userAmount={data.userAmount}
         newCurrency={data.newCurrency}
-        exchangeRate={data.exchangeRate}
+        exchangeRate={exchangeRate}
       />
     )
   })
