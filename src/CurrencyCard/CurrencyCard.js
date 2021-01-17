@@ -28,4 +28,4 @@ const CurrencyCard = ({
   )
 }
 
-export default CurrencyCard;
+export default CurrencyCard

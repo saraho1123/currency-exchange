@@ -1,12 +1,9 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-
 import './BookmarkedContainer.scss';
 import Bookmarked from '../Bookmarked/Bookmarked.js'
 
-
 const BookmarkedContainer = ({ bookmarkedConversions, removeBookmarked, deleteCurrencyCard }) => {
-  console.log(bookmarkedConversions)
   if (bookmarkedConversions.length < 1) {
     return (
       <section className='bookmarked-container'>

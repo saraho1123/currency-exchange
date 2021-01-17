@@ -4,8 +4,7 @@ import './ExchangeContainer.scss'
 import CurrencyCard from '../CurrencyCard/CurrencyCard.js'
  
 const ExchangeContainer = ({ fusedData, addBookmarked, deleteCurrencyCard, bookmarkedTag }) => {
-  console.log(fusedData)
-  if (fusedData.length < 1 ) {
+  if (fusedData.length < 1) {
     return (
       <section className='container'>
         <NavLink to="/" className="nav">Get a new Currency Exchange!</NavLink>
@@ -30,15 +29,15 @@ const ExchangeContainer = ({ fusedData, addBookmarked, deleteCurrencyCard, bookm
         />
         )
       })
-      return (
-        fusedData &&
-        <section className='container'>
-          <NavLink to="/" className="nav">Get a new Currency Exchange!</NavLink>
-          <NavLink to="/bookmarked-conversions" className="nav">See Your Bookmarked Conversions</NavLink>
-          <h1 >This is the container for the currency cards</h1>
-          { currencyCards }
-        </section>
-      )
+    return (
+      fusedData &&
+      <section className='container'>
+        <NavLink to="/" className="nav">Get a new Currency Exchange!</NavLink>
+        <NavLink to="/bookmarked-conversions" className="nav">See Your Bookmarked Conversions</NavLink>
+        <h1 >This is the container for the currency cards</h1>
+        { currencyCards }
+      </section>
+    )
    }
   }
 

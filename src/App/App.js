@@ -36,7 +36,6 @@ const App = () => {
   }
 
   const removeBookmarked = (id) => {
-    console.log('remove', bookmarkedConversions)
     const filteredCards = fusedData.filter(card => {
       return card.currencyData.id !== id
     })
@@ -48,7 +47,6 @@ const App = () => {
     if(useEffectSwitch) {
       getExchangeRates(currencyData.userCurrency)
       .then(data =>  {
-        // setExchangeRate(data.rates[currencyData.newCurrency])
         consolidateData(data.rates[currencyData.newCurrency], data.date)
       })
       .catch(error => console.log(error))
@@ -79,7 +77,6 @@ const App = () => {
       <h1>Currency Exchange</h1>
       <Switch>
         <Route 
-          
           path='/currency-cards'
           render={() => {
             return(
