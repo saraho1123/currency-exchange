@@ -41,14 +41,11 @@ const App = () => {
 
   const consolidateData = () => {
     const calculatedAmount = calculateNewAmount()
-    // let fusedData = []
     const newFusedData = {
       currencyData,
       newAmount: calculatedAmount,
       exchangeRate
     }
-    // fusedData.push(newFusedData)
-    // return fusedData
     setFusedData([...fusedData, newFusedData])
   }
 
@@ -90,8 +87,5 @@ const App = () => {
     </main>
   )
 }
-/*
-App shouldn't do much other than render the Form
-*/
 
 export default App;

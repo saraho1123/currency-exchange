@@ -8,9 +8,6 @@ import { getExchangeRates } from '../apiCalls.js'
 import { sampleApiData } from '../sampleApiData.js'
  
 const ExchangeContainer = ({ fusedData }) => {
-  console.log(fusedData)
-  // const [allData, setAllData] = useState([])
-
     const currencyCards = fusedData.map(data => {
       return (
         <CurrencyCard 
