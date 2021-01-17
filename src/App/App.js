@@ -27,13 +27,12 @@ const App = () => {
   }
 
   const addBookmarked = (id) => {
-    console.log('bookmarked')
-    console.log('id', id)
-    console.log('fused', fusedData)
-    const bookmarkedCards = fusedData.filter(card => {
-      return card.id === id
+    console.log(id)
+    console.log(fusedData[0])
+    const bookmarkedCards = fusedData.find(card => {
+      return card.currencyData.id == id
     })
-    console.group(bookmarkedCards)
+    console.log('bookmarked array before link', bookmarkedCards)
     setBookmarkedConversions([...bookmarkedConversions, bookmarkedCards])
   }
 
@@ -78,7 +77,6 @@ const App = () => {
               fusedData  && 
               <ExchangeContainer 
                 fusedData={fusedData}
-                useEffectSwitch={useEffectSwitch}
                 addBookmarked={addBookmarked}
               />
             )
@@ -91,8 +89,7 @@ const App = () => {
             return(
               fusedData  && 
               <BookmarkedContainer 
-              bookmarkedConversions={bookmarkedConversions}
-                useEffectSwitch={useEffectSwitch}
+                bookmarkedConversions={bookmarkedConversions}
                 // resetExchangeRate={resetExchangeRate} 
               />
             )
