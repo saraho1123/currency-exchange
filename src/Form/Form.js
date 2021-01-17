@@ -24,8 +24,8 @@ const Form = (props) => {
     setNewCurrency('')
   }
 
-  const toInputUppercase = e => {
-    e.target.value = ("" + e.target.value).toUpperCase();
+  const toInputUppercase = event => {
+    event.target.value = ("" + event.target.value).toUpperCase();
   };
   
   return (
@@ -46,7 +46,7 @@ const Form = (props) => {
           max='10000'
           className='user-amount'
           placeholder='Amount to exchange (up to 10,000)'
-          value={userAmount}
+          value={userAmount || 1 }
           onChange={(event) => setUserAmount(event.target.value)}
         />
         <input 
