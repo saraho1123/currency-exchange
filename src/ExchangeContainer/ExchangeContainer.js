@@ -22,7 +22,7 @@ const ExchangeContainer = ({ fusedData, addBookmarked }) => {
         fusedData &&
         <section className='container'>
           <NavLink to="/" className="nav">Get a new Currency Exchange!</NavLink>
-          <NavLink to="/bookmarked-conversions" className="nav">See Bookmarked Conversions</NavLink>
+          <NavLink to="/bookmarked-conversions" className="nav">See All Your Conversions</NavLink>
           <h1 >This is the container for the currency cards</h1>
           { currencyCards }
         </section>
