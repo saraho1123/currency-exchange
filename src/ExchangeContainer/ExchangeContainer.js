@@ -7,10 +7,9 @@ import Bookmarked from '../Bookmarked/Bookmarked.js'
 import { getExchangeRates } from '../apiCalls.js'
 import { sampleApiData } from '../sampleApiData.js'
  
-const ExchangeContainer = ({ fusedData, useEffectSwitch}) => {
-  const [allData, setAllData] = useState([])
-  // const [xUseEffectSwitch, setXUseEffectSwitch] = useState(useEffectSwitc
-
+const ExchangeContainer = ({ fusedData }) => {
+  console.log(fusedData)
+  // const [allData, setAllData] = useState([])
 
     const currencyCards = fusedData.map(data => {
       return (
@@ -31,27 +30,9 @@ const ExchangeContainer = ({ fusedData, useEffectSwitch}) => {
       <h1 >This is the container for the currency cards</h1>
       { currencyCards }
       <NavLink to="/" className="nav">Get a new Currency Exchange!</NavLink>
-  
     </section>
     )
 
   }
-
-
-
-  // if(props.currencyCards) {
-  //   const currencyCards = props.currencyCards.map(card => {
-  //     return (
-        
-  //     )
-  //   })
-  // }
-/*
-I think the api call should be here using the props passed from Form and then pass the manipulated data from the api call to each
-individual CurrencyCard
-
-There should be a button to display bookmarked cards/return to all cards 
-*/
-
 
 export default ExchangeContainer
