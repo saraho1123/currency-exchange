@@ -1,11 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import { Route } from 'react-router-dom'
-import { Link, NavLink } from 'react-router-dom'
+import React from 'react'
+import { NavLink } from 'react-router-dom'
 import './ExchangeContainer.scss'
 import CurrencyCard from '../CurrencyCard/CurrencyCard.js'
-import Bookmarked from '../Bookmarked/Bookmarked.js'
-import { getExchangeRates } from '../apiCalls.js'
-import { sampleApiData } from '../sampleApiData.js'
  
 const ExchangeContainer = ({ fusedData, addBookmarked }) => {
     const currencyCards = fusedData.map(data => {

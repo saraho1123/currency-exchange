@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Route } from 'react-router-dom'
-import { Link, NavLink } from 'react-router-dom'
+import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 import './BookmarkedContainer.scss';
 import Bookmarked from '../Bookmarked/Bookmarked.js'

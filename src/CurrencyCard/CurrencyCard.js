@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import './CurrencyCard.scss';
 
 const CurrencyCard = ({ id, newAmount, userCurrency, userAmount, newCurrency, exchangeRate, addBookmarked }) => {

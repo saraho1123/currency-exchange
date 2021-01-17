@@ -45,7 +45,9 @@ const App = () => {
         consolidateData()
       })
       .catch(error => console.log(error))
+      setUseEffectSwitch(false)
     }
+
   }, [currencyData])
 
   const calculateNewAmount = () => {
