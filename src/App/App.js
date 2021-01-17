@@ -59,7 +59,7 @@ const App = () => {
           path='/currency-cards'
           render={() => {
             return(
-              fusedData  && 
+              fusedData  && // I reallized this is an array of objects, not a single object, which could be why it is not working.
               <ExchangeContainer 
                 fusedData={fusedData}
                 useEffectSwitch={useEffectSwitch}
