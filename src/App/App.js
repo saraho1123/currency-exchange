@@ -3,6 +3,8 @@ import { Route, Switch } from 'react-router-dom'
 import './App.scss';
 import Form from '../Form/Form.js'
 import ExchangeContainer from '../ExchangeContainer/ExchangeContainer.js'
+import BookmarkedContainer from '../BookmarkedContainer/BookmarkedContainer.js'
+
 import { getExchangeRates } from '../apiCalls.js'
 
 const App = () => {
@@ -10,6 +12,7 @@ const App = () => {
   const [useEffectSwitch, setUseEffectSwitch] = useState(false)
   const [exchangeRate, setExchangeRate] = useState(null)
   const [fusedData, setFusedData] = useState([])
+  const [bookmarkedConversions, setBookmarkedConversions] = useState([])
 
   const addCurrencyCard = (newCurrencyCardInfo, userInput) => { 
     setCurrencyData(newCurrencyCardInfo)
@@ -21,6 +24,13 @@ const App = () => {
       return card.id !== id
     })
     setCurrencyData(filteredCurrencyCards)
+  }
+
+  const addBookmarked = (id) => {
+    const bookmarkedCards = fusedData.filter(card => {
+      return card.id === id
+    })
+    setBookmarkedConversions([...bookmarkedConversions, bookmarkedCards])
   }
 
   useEffect(() => {
@@ -61,6 +71,20 @@ const App = () => {
             return(
               fusedData  && 
               <ExchangeContainer 
+                fusedData={fusedData}
+                useEffectSwitch={useEffectSwitch}
+                // resetExchangeRate={resetExchangeRate} 
+              />
+            )
+          }}
+        />
+        <Route 
+          
+          path='/currency-cards'
+          render={() => {
+            return(
+              fusedData  && 
+              <BookmarkedContainer 
                 fusedData={fusedData}
                 useEffectSwitch={useEffectSwitch}
                 // resetExchangeRate={resetExchangeRate} 
