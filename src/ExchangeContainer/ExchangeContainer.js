@@ -8,7 +8,7 @@ const ExchangeContainer = ({ fusedData, addBookmarked }) => {
       return (
         <CurrencyCard 
         id={data.currencyData.id}
-        key={data.id}
+        key={data.currencyData.id}
         newAmount={data.newAmount}
         userCurrency={data.currencyData.userCurrency}
         userAmount={data.currencyData.userAmount}
