@@ -1,17 +1,27 @@
-import React, { useState, useEffect } from 'react'
-import { Route } from 'react-router-dom'
+import React from 'react'
 import './Bookmarked.scss';
 
-const Bookmarked = () => {
-  return (
-    <h1 className='currency-card'>This is for bookmarked Currency Cards</h1>
-  )
+const Bookmarked = ({ 
+  id, 
+  newAmount, 
+  userCurrency, 
+  userAmount, 
+  newCurrency, 
+  exchangeRate, 
+  deleteCurrencyCard,
+  removeBookmarked }) => {
+  if(id !== undefined) {
+    return (
+      <section className='bookmarked'>
+        <button onClick={() => deleteCurrencyCard(id)}>🗑</button>
+        <h1>{userAmount} {userCurrency} is worth: </h1>
+        <h1>{newAmount} {newCurrency}</h1>        
+        <h1>at an exchange rate of: </h1>            
+        <h1>{exchangeRate}</h1> 
+        <button onClick={()=> removeBookmarked(id)}>Remove From Bookmarked Conversions</button>
+      </section>
+    )
+  }
 }
-
-/*
-This should just render a subset of the CurrencyCards
-It will need a button to return to Form or to all CurrencyCards
-I honestly don't think I"m going to need this one! oops!
-*/
 
 export default Bookmarked;

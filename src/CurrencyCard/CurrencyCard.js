@@ -1,17 +1,31 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import './CurrencyCard.scss';
 
-const CurrencyCard = ({ newAmount, userCurrency, userAmount, newCurrency, exchangeRate }) => {
+const CurrencyCard = ({ 
+  id, 
+  newAmount, 
+  userCurrency, 
+  userAmount, 
+  newCurrency, 
+  exchangeRate, 
+  date,
+  addBookmarked, 
+  bookmarkedTag, 
+  deleteCurrencyCard,
+ }) => {
   return (
       <section className='currency-card'>
-        <h1>{newAmount}</h1>        
-        <h1>{userCurrency}</h1>        
-        <h1>{userAmount}</h1>        
-        <h1>{newCurrency}</h1>        
-        <h1>{exchangeRate}</h1>   
-        <button>Bookmark this Conversion</button>     
+        <button onClick={() => deleteCurrencyCard(id)}>🗑</button>
+        <p>On {date}, {userAmount} {userCurrency} is worth: </p>
+        <h1>{newAmount} {newCurrency}</h1>        
+        <p>at an exchange rate of: <b>{exchangeRate}</b></p>
+        {!bookmarkedTag &&           
+          <button 
+            onClick={() => addBookmarked(id)} >
+            Bookmark this Conversion
+          </button>}  
       </section>
   )
 }
 
-export default CurrencyCard;
+export default CurrencyCard

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import './Form.scss'
 
 const Form = (props) => {
@@ -30,6 +30,7 @@ const Form = (props) => {
   
   return (
     <section >
+      <NavLink to='/currency-cards' className='nav'>See All Your Conversions</NavLink>
       <form className='user-input'>
         <input 
           type='text'
@@ -62,4 +63,4 @@ const Form = (props) => {
   )
 }
 
-export default Form;
+export default Form
