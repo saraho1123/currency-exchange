@@ -5,13 +5,13 @@ import './BookmarkedContainer.scss';
 import Bookmarked from '../Bookmarked/Bookmarked.js'
 
 
-const BookmarkedContainer = ({ bookmarkedCards, removeBookmark }) => {
-  console.log(bookmarkedCards)
-  const currencyCards = bookmarkedCards.map(data => {
+const BookmarkedContainer = ({ bookmarkedConversions, removeBookmark }) => {
+  console.log('bookmarked array', bookmarkedConversions)
+  const currencyCards = bookmarkedConversions.map(data => {
     return (
       <Bookmarked
         id={data.currencyData.id}
-        key={data.id}
+        key={data.currencyData.id}
         newAmount={data.newAmount}
         userCurrency={data.currencyData.userCurrency}
         userAmount={data.currencyData.userAmount}
