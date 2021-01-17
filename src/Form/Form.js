@@ -1,35 +1,32 @@
-import React, { useState, useEffect } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import React, { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import './Form.scss'
-import ExchangeContainer from '../ExchangeContainer/ExchangeContainer.js'
-import { getExchangeRates } from '../apiCalls.js'
-
-
 
 const Form = (props) => {
   const [userCurrency, setUserCurrency] = useState('')
   const [userAmount, setUserAmount] = useState('')
   const [newCurrency, setNewCurrency] = useState('')
 
-
-  const getUserData = () => {
+  const getUserData = async () => {
     const newExchange = {
-        id: Date.now(),
-        userCurrency, 
-        userAmount,
-        newCurrency,
-        // exchangeRate
-      }
-      props.addCurrencyCard(newExchange)
-      clearInputs()
+      id: Date.now(),
+      userCurrency, 
+      userAmount,
+      newCurrency,
     }
+    await props.addCurrencyCard(newExchange)
+    clearInputs()
+  }
 
   const clearInputs = () => {
     setUserCurrency('')
     setUserAmount('')
     setNewCurrency('')
   }
+
+  const toInputUppercase = e => {
+    e.target.value = ("" + e.target.value).toUpperCase();
+  };
   
   return (
     <section >
@@ -38,6 +35,7 @@ const Form = (props) => {
           type='text'
           className='user-currency'
           placeholder='Type country of your currency'
+          onInput={toInputUppercase}
           value={userCurrency}
           onChange={(event) => setUserCurrency(event.target.value)}
         />
@@ -54,25 +52,14 @@ const Form = (props) => {
           type='text'
           className='new-currency'
           placeholder='Type country of currency you want'
+          onInput={toInputUppercase}
           value={newCurrency}
           onChange={(event) => setNewCurrency(event.target.value)}
         />
+      <NavLink onClick={getUserData} to="/currency-cards" className="nav">Get Currency Conversion </NavLink>
       </form>
-      <NavLink  onClick={getUserData} to="/currency-cards" className="nav">Get Currency Conversion</NavLink>
-
     </section>
   )
 }
-
-/*
-
-NOTES FOR TOMORROW:
-useEffect is causing an endless loop
-right now, cannot read property target of undefined
-need to stop for the night as I am tired and will probably do better in the morning
-Form should take in user input and route to ExchangeContainer, passing the user input
-
-I think I should have a button to get to 'bookmarked' from here??
-*/
 
 export default Form;

@@ -5,20 +5,48 @@ import Form from '../Form/Form.js'
 import ExchangeContainer from '../ExchangeContainer/ExchangeContainer.js'
 import { getExchangeRates } from '../apiCalls.js'
 
-
 const App = () => {
-  const [currencyInputData, setcurrencyInputData] = useState({})
+  const [currencyData, setCurrencyData] = useState({})
+  const [useEffectSwitch, setUseEffectSwitch] = useState(false)
+  const [exchangeRate, setExchangeRate] = useState(null)
+  const [fusedData, setFusedData] = useState([])
 
-
-  const addCurrencyCard = (newCurrencyCardInfo) => {
-    setcurrencyInputData(newCurrencyCardInfo)
+  const addCurrencyCard = (newCurrencyCardInfo, userInput) => { 
+    setCurrencyData(newCurrencyCardInfo)
+    setUseEffectSwitch(true)
   }
 
   const deleteCurrencyCard = (id) => {
-    const filteredCurrencyCards = currencyInputData.filter(card => {
+    const filteredCurrencyCards = currencyData.filter(card => {
       return card.id !== id
     })
-    setcurrencyInputData(filteredCurrencyCards)
+    setCurrencyData(filteredCurrencyCards)
+  }
+
+  useEffect(() => {
+    if(useEffectSwitch) {
+      getExchangeRates(currencyData.userCurrency)
+      .then(data =>  {
+        setExchangeRate(data.rates[currencyData.newCurrency])
+        consolidateData()
+      })
+      .catch(error => console.log(error))
+    }
+  }, [currencyData])
+
+  const calculateNewAmount = () => {
+    const newAmount = Math.round(100 * exchangeRate)/100 * currencyData.userAmount
+    return newAmount
+  }
+
+  const consolidateData = () => {
+    const calculatedAmount = calculateNewAmount()
+    const newFusedData = {
+      currencyData,
+      newAmount: calculatedAmount,
+      exchangeRate
+    }
+    setFusedData([...fusedData, newFusedData])
   }
 
   return (
@@ -31,7 +59,12 @@ const App = () => {
           path='/currency-cards'
           render={() => {
             return(
-              <ExchangeContainer currencyInputData={currencyInputData}/>
+              fusedData  && 
+              <ExchangeContainer 
+                fusedData={fusedData}
+                useEffectSwitch={useEffectSwitch}
+                // resetExchangeRate={resetExchangeRate} 
+              />
             )
           }}
         />
@@ -42,6 +75,7 @@ const App = () => {
           return (
             <Form 
               addCurrencyCard={addCurrencyCard} 
+              // resetExchangeRate={resetExchangeRate}
               // deleteCurrencyCard={deleteCurrencyCard}
             />
           )
@@ -53,8 +87,5 @@ const App = () => {
     </main>
   )
 }
-/*
-App shouldn't do much other than render the Form
-*/
 
 export default App;
