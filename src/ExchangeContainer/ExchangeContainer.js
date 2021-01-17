@@ -27,10 +27,10 @@ const ExchangeContainer = ({ fusedData }) => {
       return (
         fusedData &&
         <section className='container'>
-      <h1 >This is the container for the currency cards</h1>
-      { currencyCards }
-      <NavLink to="/" className="nav">Get a new Currency Exchange!</NavLink>
-    </section>
+          <NavLink to="/" className="nav">Get a new Currency Exchange!</NavLink>
+          <h1 >This is the container for the currency cards</h1>
+          { currencyCards }
+        </section>
     )
 
   }
