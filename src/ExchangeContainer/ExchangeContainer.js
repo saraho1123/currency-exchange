@@ -7,7 +7,7 @@ import Bookmarked from '../Bookmarked/Bookmarked.js'
 import { getExchangeRates } from '../apiCalls.js'
 import { sampleApiData } from '../sampleApiData.js'
  
-const ExchangeContainer = ({ fusedData }) => {
+const ExchangeContainer = ({ fusedData, addBookmarked }) => {
     const currencyCards = fusedData.map(data => {
       return (
         <CurrencyCard 
@@ -18,6 +18,7 @@ const ExchangeContainer = ({ fusedData }) => {
         userAmount={data.currencyData.userAmount}
         newCurrency={data.currencyData.newCurrency}
         exchangeRate={data.exchangeRate}
+        addBookmarked={addBookmarked}
         />
         )
       })
@@ -25,6 +26,7 @@ const ExchangeContainer = ({ fusedData }) => {
         fusedData &&
         <section className='container'>
           <NavLink to="/" className="nav">Get a new Currency Exchange!</NavLink>
+          <NavLink to="/bookmarked-conversions" className="nav">See Bookmarked Conversions</NavLink>
           <h1 >This is the container for the currency cards</h1>
           { currencyCards }
         </section>

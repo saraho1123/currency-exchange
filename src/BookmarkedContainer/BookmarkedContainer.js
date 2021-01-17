@@ -7,6 +7,7 @@ import Bookmarked from '../Bookmarked/Bookmarked.js'
 
 
 const BookmarkedContainer = ({ bookmarkedCards, removeBookmark }) => {
+  console.log(bookmarkedCards)
   const currencyCards = bookmarkedCards.map(data => {
     return (
       <Bookmarked
