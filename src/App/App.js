@@ -23,7 +23,8 @@ const App = () => {
     const filteredCurrencyCards = fusedData.filter(card => {
       return card.currencyData.id !== id
     })
-    setCurrencyData(filteredCurrencyCards)
+    setFusedData(filteredCurrencyCards)
+    setBookmarkedConversions(filteredCurrencyCards)
   }
 
   const addBookmarked = (id) => {
@@ -34,13 +35,13 @@ const App = () => {
   }
 
   const removeBookmarked = (id) => {
-    const filteredCards = fusedData.find(card => {
+    console.log('remove', bookmarkedConversions)
+    const filteredCards = fusedData.filter(card => {
       return card.currencyData.id !== id
     })
     setBookmarkedConversions(filteredCards)
   }
   
-
   useEffect(() => {
     if(useEffectSwitch) {
       getExchangeRates(currencyData.userCurrency)

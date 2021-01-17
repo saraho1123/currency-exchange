@@ -13,7 +13,7 @@ const CurrencyCard = ({
  }) => {
   return (
       <section className='currency-card'>
-        <button onClick={deleteCurrencyCard}>🗑</button>
+        <button onClick={() => deleteCurrencyCard(id)}>🗑</button>
         <h1>{userAmount} {userCurrency} is worth: </h1>
         <h1>{newAmount} {newCurrency}</h1>        
         <h1>at an exchange rate of: </h1>            

@@ -6,7 +6,10 @@ import CurrencyCard from '../CurrencyCard/CurrencyCard.js'
 const ExchangeContainer = ({ fusedData, addBookmarked, deleteCurrencyCard }) => {
   if (fusedData.length < 1 ) {
     return (
-      <h1>You have not completed any conversions yet.</h1>
+      <section className='container'>
+        <NavLink to="/" className="nav">Get a new Currency Exchange!</NavLink>
+        <h1>You have not completed any conversions yet.</h1>
+      </section>
     )
   } else {
     const currencyCards = fusedData.map(data => {
