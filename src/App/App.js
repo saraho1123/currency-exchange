@@ -41,15 +41,15 @@ const App = () => {
 
   const consolidateData = () => {
     const calculatedAmount = calculateNewAmount()
-    let fusedData = []
+    // let fusedData = []
     const newFusedData = {
       currencyData,
       newAmount: calculatedAmount,
       exchangeRate
     }
-    fusedData.push(newFusedData)
-    return fusedData
-    // setFusedData([...fusedData, newFusedData])
+    // fusedData.push(newFusedData)
+    // return fusedData
+    setFusedData([...fusedData, newFusedData])
   }
 
   return (
