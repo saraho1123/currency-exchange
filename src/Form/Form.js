@@ -56,7 +56,7 @@ const Form = (props) => {
           value={newCurrency}
           onChange={(event) => setNewCurrency(event.target.value)}
         />
-        <NavLink onClick={getUserData} to="/currency-cards" className="nav">Get Currency Conversion </NavLink>
+      <NavLink onClick={getUserData} to="/currency-cards" className="nav">Get Currency Conversion </NavLink>
       </form>
     </section>
   )
