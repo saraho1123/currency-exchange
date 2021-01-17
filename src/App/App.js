@@ -14,27 +14,32 @@ const App = () => {
   const [fusedData, setFusedData] = useState([])
   const [bookmarkedConversions, setBookmarkedConversions] = useState([])
 
-  const addCurrencyCard = (newCurrencyCardInfo, userInput) => { 
+  const addCurrencyCard = (newCurrencyCardInfo) => { 
     setCurrencyData(newCurrencyCardInfo)
     setUseEffectSwitch(true)
   }
 
   const deleteCurrencyCard = (id) => {
-    const filteredCurrencyCards = currencyData.filter(card => {
-      return card.id !== id
+    const filteredCurrencyCards = fusedData.filter(card => {
+      return card.currencyData.id !== id
     })
     setCurrencyData(filteredCurrencyCards)
   }
 
   const addBookmarked = (id) => {
-    console.log(id)
-    console.log(fusedData[0])
     const bookmarkedCards = fusedData.find(card => {
       return card.currencyData.id == id
     })
-    console.log('bookmarked array before link', bookmarkedCards)
     setBookmarkedConversions([...bookmarkedConversions, bookmarkedCards])
   }
+
+  const removeBookmarked = (id) => {
+    const filteredCards = fusedData.find(card => {
+      return card.currencyData.id !== id
+    })
+    setBookmarkedConversions(filteredCards)
+  }
+  
 
   useEffect(() => {
     if(useEffectSwitch) {
@@ -78,6 +83,7 @@ const App = () => {
               <ExchangeContainer 
                 fusedData={fusedData}
                 addBookmarked={addBookmarked}
+                deleteCurrencyCard={deleteCurrencyCard}
               />
             )
           }}
@@ -90,7 +96,8 @@ const App = () => {
               fusedData  && 
               <BookmarkedContainer 
                 bookmarkedConversions={bookmarkedConversions}
-                // resetExchangeRate={resetExchangeRate} 
+                deleteCurrencyCard={deleteCurrencyCard}
+                removeBookmarked={removeBookmarked}
               />
             )
           }}
@@ -102,8 +109,6 @@ const App = () => {
           return (
             <Form 
               addCurrencyCard={addCurrencyCard} 
-              // resetExchangeRate={resetExchangeRate}
-              // deleteCurrencyCard={deleteCurrencyCard}
             />
           )
         }}

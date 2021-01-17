@@ -5,11 +5,15 @@ import './BookmarkedContainer.scss';
 import Bookmarked from '../Bookmarked/Bookmarked.js'
 
 
-const BookmarkedContainer = ({ bookmarkedConversions, removeBookmark }) => {
-  console.log('bookmarked array', bookmarkedConversions)
-  const currencyCards = bookmarkedConversions.map(data => {
+const BookmarkedContainer = ({ bookmarkedConversions, removeBookmarked, deleteCurrencyCard }) => {
+  if (bookmarkedConversions.length < 1 ) {
     return (
-      <Bookmarked
+      <h1>You have not bookmarked any conversions yet.</h1>
+    )
+  } else {
+    const currencyCards = bookmarkedConversions.map(data => {
+      return (
+        <Bookmarked
         id={data.currencyData.id}
         key={data.currencyData.id}
         newAmount={data.newAmount}
@@ -17,18 +21,21 @@ const BookmarkedContainer = ({ bookmarkedConversions, removeBookmark }) => {
         userAmount={data.currencyData.userAmount}
         newCurrency={data.currencyData.newCurrency}
         exchangeRate={data.exchangeRate}
-        removeBookmark={removeBookmark}
-      />
-      )
-    })
-    return (
-      <section className='bookmarked-container'>
+        removeBookmarked={removeBookmarked}
+        deleteCurrencyCard={deleteCurrencyCard}
+        
+        />
+        )
+      })
+      return (
+        <section className='bookmarked-container'>
         <NavLink to="/" className="nav">Get a new Currency Exchange!</NavLink>
         <NavLink to='/currency-cards' className='nav'>See All Your Conversions</NavLink>
         <h1 >This is the container for the bookmarked cards</h1>
         { currencyCards }
       </section>
-  )
+    )
+  }
 }
 
 export default BookmarkedContainer;
