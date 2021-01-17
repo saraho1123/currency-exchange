@@ -4,11 +4,10 @@ import './Bookmarked.scss';
 const Bookmarked = ({ id, newAmount, userCurrency, userAmount, newCurrency, exchangeRate, addBookmarked }) => {
   return (
     <section className='bookmarked'>
-    <h1>{newAmount}</h1>        
-    <h1>{userCurrency}</h1>        
-    <h1>{userAmount}</h1>        
-    <h1>{newCurrency}</h1>        
-    <h1>{exchangeRate}</h1>   
+      <h1>{userAmount} {userCurrency} is worth: </h1>
+      <h1>{newAmount} {newCurrency}</h1>        
+      <h1>at an exchange rate of: </h1>            
+      <h1>{exchangeRate}</h1> 
   </section>
   )
 }

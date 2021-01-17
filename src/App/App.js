@@ -50,7 +50,7 @@ const App = () => {
   }, [currencyData])
 
   const calculateNewAmount = (exRate) => {
-    const newAmount = Math.round(100 * exRate)/100 * currencyData.userAmount
+    const newAmount = Math.round(1000 * exRate)/1000 * currencyData.userAmount
     return newAmount
   }
 
