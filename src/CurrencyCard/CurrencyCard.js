@@ -8,17 +8,22 @@ const CurrencyCard = ({
   userAmount, 
   newCurrency, 
   exchangeRate, 
+  date,
   addBookmarked, 
+  bookmarkedTag, 
   deleteCurrencyCard,
  }) => {
   return (
       <section className='currency-card'>
         <button onClick={() => deleteCurrencyCard(id)}>🗑</button>
-        <h1>{userAmount} {userCurrency} is worth: </h1>
+        <p>On {date}, {userAmount} {userCurrency} is worth: </p>
         <h1>{newAmount} {newCurrency}</h1>        
-        <h1>at an exchange rate of: </h1>            
-        <h1>{exchangeRate}</h1>   
-        <button onClick={() => addBookmarked(id)} >Bookmark this Conversion</button>     
+        <p>at an exchange rate of: <b>{exchangeRate}</b></p>
+        {!bookmarkedTag &&           
+          <button 
+            onClick={() => addBookmarked(id)} >
+            Bookmark this Conversion
+          </button>}  
       </section>
   )
 }

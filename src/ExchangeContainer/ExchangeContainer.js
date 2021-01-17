@@ -3,7 +3,8 @@ import { NavLink } from 'react-router-dom'
 import './ExchangeContainer.scss'
 import CurrencyCard from '../CurrencyCard/CurrencyCard.js'
  
-const ExchangeContainer = ({ fusedData, addBookmarked, deleteCurrencyCard }) => {
+const ExchangeContainer = ({ fusedData, addBookmarked, deleteCurrencyCard, bookmarkedTag }) => {
+  console.log(fusedData)
   if (fusedData.length < 1 ) {
     return (
       <section className='container'>
@@ -22,7 +23,9 @@ const ExchangeContainer = ({ fusedData, addBookmarked, deleteCurrencyCard }) => 
         userAmount={data.currencyData.userAmount}
         newCurrency={data.currencyData.newCurrency}
         exchangeRate={data.exchangeRate}
+        date={data.date}
         addBookmarked={addBookmarked}
+        bookmarkedTag={bookmarkedTag}
         deleteCurrencyCard={deleteCurrencyCard}
         />
         )
@@ -31,7 +34,7 @@ const ExchangeContainer = ({ fusedData, addBookmarked, deleteCurrencyCard }) => 
         fusedData &&
         <section className='container'>
           <NavLink to="/" className="nav">Get a new Currency Exchange!</NavLink>
-          <NavLink to="/bookmarked-conversions" className="nav">See All Your Conversions</NavLink>
+          <NavLink to="/bookmarked-conversions" className="nav">See Your Bookmarked Conversions</NavLink>
           <h1 >This is the container for the currency cards</h1>
           { currencyCards }
         </section>

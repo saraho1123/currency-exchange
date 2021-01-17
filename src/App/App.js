@@ -10,7 +10,7 @@ import { getExchangeRates } from '../apiCalls.js'
 const App = () => {
   const [currencyData, setCurrencyData] = useState({})
   const [useEffectSwitch, setUseEffectSwitch] = useState(false)
-  const [exchangeRate, setExchangeRate] = useState(null)
+  const [bookmarkedTag, setBookmarkedTag] = useState(false)
   const [fusedData, setFusedData] = useState([])
   const [bookmarkedConversions, setBookmarkedConversions] = useState([])
 
@@ -32,6 +32,7 @@ const App = () => {
       return card.currencyData.id == id
     })
     setBookmarkedConversions([...bookmarkedConversions, bookmarkedCards])
+    setBookmarkedTag(true)
   }
 
   const removeBookmarked = (id) => {
@@ -40,14 +41,15 @@ const App = () => {
       return card.currencyData.id !== id
     })
     setBookmarkedConversions(filteredCards)
+    setBookmarkedTag(false)
   }
   
   useEffect(() => {
     if(useEffectSwitch) {
       getExchangeRates(currencyData.userCurrency)
       .then(data =>  {
-        setExchangeRate(data.rates[currencyData.newCurrency])
-        consolidateData(data.rates[currencyData.newCurrency])
+        // setExchangeRate(data.rates[currencyData.newCurrency])
+        consolidateData(data.rates[currencyData.newCurrency], data.date)
       })
       .catch(error => console.log(error))
       setUseEffectSwitch(false)
@@ -60,12 +62,13 @@ const App = () => {
     return newAmount
   }
 
-  const consolidateData = (exRate) => {
+  const consolidateData = (exRate, date) => {
     const calculatedAmount = calculateNewAmount(exRate)
     const newFusedData = {
       currencyData,
       newAmount: calculatedAmount,
       exchangeRate: exRate,
+      date: date,
     }
     setFusedData([...fusedData, newFusedData])
   }
@@ -85,6 +88,7 @@ const App = () => {
                 fusedData={fusedData}
                 addBookmarked={addBookmarked}
                 deleteCurrencyCard={deleteCurrencyCard}
+                bookmarkedTag={bookmarkedTag}
               />
             )
           }}
