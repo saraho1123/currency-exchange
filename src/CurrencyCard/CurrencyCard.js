@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { Route } from 'react-router-dom'
 import './CurrencyCard.scss';
 
-const CurrencyCard = ({ currencyCards }) => {
-
+const CurrencyCard = ({ newAmount, userCurrency, userAmount, newCurrency, exchangeRate }) => {
   return (
       <section className='currency-card'>
-        <h1>This would be an individual Currency Card</h1>
-        {/* <h2>{currencyCards.newAmount}</h2> */}
-        
+        <h1>{newAmount}</h1>        
+        <h1>{userCurrency}</h1>        
+        <h1>{userAmount}</h1>        
+        <h1>{newCurrency}</h1>        
+        <h1>{exchangeRate}</h1>   
+        <button>Bookmark this Conversion</button>     
       </section>
   )
 }

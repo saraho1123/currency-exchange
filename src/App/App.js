@@ -7,16 +7,15 @@ import { getExchangeRates } from '../apiCalls.js'
 
 
 const App = () => {
-  const [currencyData, setCurrencyData] = useState([])
-  const [userInput, setUserInput] = useState(false)
+  const [currencyData, setCurrencyData] = useState({})
+  const [useEffectSwitch, setUseEffectSwitch] = useState(false)
   const [exchangeRate, setExchangeRate] = useState(null)
   // const [fusedData, setFusedData] = useState([])
 
   const addCurrencyCard = (newCurrencyCardInfo, userInput) => {
     
-    setCurrencyData([...currencyData, newCurrencyCardInfo])
-    // console.log('new currency', currencyData/*[(currencyData.length) - 1]*/)
-    setUserInput(true)
+    setCurrencyData(newCurrencyCardInfo)
+    setUseEffectSwitch(true)
   }
 
   const deleteCurrencyCard = (id) => {
@@ -27,13 +26,11 @@ const App = () => {
   }
 
   useEffect(() => {
-    if(userInput) {
-      console.log(currencyData[currencyData.length - 1].userCurrency)
-      getExchangeRates(currencyData[currencyData.length - 1].userCurrency)
+    if(useEffectSwitch) {
+      getExchangeRates(currencyData.userCurrency)
       .then(data =>  {
-        console.log('new currency', currencyData[currencyData.length - 1].newCurrency)
-        setExchangeRate(data.rates[currencyData[currencyData.length - 1].newCurrency])
-        consolidateData()
+        setExchangeRate(data.rates[currencyData.newCurrency])
+        // consolidateData()
       })
       .catch(error => console.log(error))
     }
@@ -51,18 +48,19 @@ const App = () => {
   //   }
   // }
 
-  const resetExchangeRate = () => {
-    setUserInput(false)
-    setExchangeRate(null)
-  }
+  // const resetExchangeRate = () => {
+  //   useEffectSwitch(false)
+  //   setExchangeRate(null)
+  // }
 
   const calculateNewAmount = () => {
-    const newAmount = Math.round(100 * exchangeRate)/100 * currencyData[currencyData.length - 1].userAmount
+    const newAmount = Math.round(100 * exchangeRate)/100 * currencyData.userAmount
     return newAmount
   }
 
   const consolidateData = () => {
     const calculatedAmount = calculateNewAmount()
+    let fusedData = []
     const newFusedData = {
       // id: currencyData.id,
       newAmount: calculatedAmount,
@@ -72,7 +70,9 @@ const App = () => {
       currencyData,
       exchangeRate
     }
-    return [newFusedData]
+    fusedData.push(newFusedData)
+    return fusedData
+    // setFusedData([...fusedData, newFusedData])
   }
 
   return (
@@ -85,12 +85,13 @@ const App = () => {
           path='/currency-cards'
           render={() => {
             return(
-              exchangeRate  &&
+              // exchangeRate  && fusedData.length > 0 &&
               <ExchangeContainer 
                 fusedData={consolidateData()}
+                useEffectSwitch={useEffectSwitch}
                 // currencyData={currencyData} 
                 // exchangeRate={exchangeRate}
-                resetExchangeRate={resetExchangeRate} 
+                // resetExchangeRate={resetExchangeRate} 
               />
             )
           }}
@@ -102,7 +103,7 @@ const App = () => {
           return (
             <Form 
               addCurrencyCard={addCurrencyCard} 
-              resetExchangeRate={resetExchangeRate}
+              // resetExchangeRate={resetExchangeRate}
               // deleteCurrencyCard={deleteCurrencyCard}
             />
           )
