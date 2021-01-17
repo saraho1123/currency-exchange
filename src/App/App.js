@@ -41,7 +41,7 @@ const App = () => {
       getExchangeRates(currencyData.userCurrency)
       .then(data =>  {
         setExchangeRate(data.rates[currencyData.newCurrency])
-        consolidateData()
+        consolidateData(data.rates[currencyData.newCurrency])
       })
       .catch(error => console.log(error))
       setUseEffectSwitch(false)
@@ -49,17 +49,17 @@ const App = () => {
 
   }, [currencyData])
 
-  const calculateNewAmount = () => {
-    const newAmount = Math.round(100 * exchangeRate)/100 * currencyData.userAmount
+  const calculateNewAmount = (exRate) => {
+    const newAmount = Math.round(100 * exRate)/100 * currencyData.userAmount
     return newAmount
   }
 
-  const consolidateData = () => {
-    const calculatedAmount = calculateNewAmount()
+  const consolidateData = (exRate) => {
+    const calculatedAmount = calculateNewAmount(exRate)
     const newFusedData = {
       currencyData,
       newAmount: calculatedAmount,
-      exchangeRate
+      exchangeRate: exRate,
     }
     setFusedData([...fusedData, newFusedData])
   }
