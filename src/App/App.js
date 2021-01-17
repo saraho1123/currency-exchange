@@ -28,24 +28,27 @@ const App = () => {
       getExchangeRates(currencyData.userCurrency)
       .then(data =>  {
         setExchangeRate(data.rates[currencyData.newCurrency])
-        consolidateData()
+        consolidateData(data.rates[currencyData.newCurrency])
       })
       .catch(error => console.log(error))
     }
   }, [currencyData])
 
-  const calculateNewAmount = () => {
-    const newAmount = Math.round(100 * exchangeRate)/100 * currencyData.userAmount
+  const calculateNewAmount = (exRate) => {
+    const newAmount = Math.round(100 * exRate)/100 * currencyData.userAmount
     return newAmount
   }
 
-  const consolidateData = () => {
-    const calculatedAmount = calculateNewAmount()
+  const consolidateData = (exRate) => {
+    const calculatedAmount = calculateNewAmount(exRate)
+    // let fusedData = []
     const newFusedData = {
       currencyData,
       newAmount: calculatedAmount,
-      exchangeRate
+      exchangeRate: exRate
     }
+    // fusedData.push(newFusedData)
+    // return fusedData
     setFusedData([...fusedData, newFusedData])
   }
 
@@ -59,7 +62,7 @@ const App = () => {
           path='/currency-cards'
           render={() => {
             return(
-              fusedData  && // I reallized this is an array of objects, not a single object, which could be why it is not working.
+              exchangeRate &&
               <ExchangeContainer 
                 fusedData={fusedData}
                 useEffectSwitch={useEffectSwitch}
