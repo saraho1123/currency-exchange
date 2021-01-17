@@ -16,17 +16,17 @@ const ExchangeContainer = ({ fusedData, addBookmarked, deleteCurrencyCard, bookm
     const currencyCards = fusedData.map(data => {
       return (
         <CurrencyCard 
-        id={data.currencyData.id}
-        key={data.currencyData.id}
-        newAmount={data.newAmount}
-        userCurrency={data.currencyData.userCurrency}
-        userAmount={data.currencyData.userAmount}
-        newCurrency={data.currencyData.newCurrency}
-        exchangeRate={data.exchangeRate}
-        date={data.date}
-        addBookmarked={addBookmarked}
-        bookmarkedTag={bookmarkedTag}
-        deleteCurrencyCard={deleteCurrencyCard}
+          id={data.currencyData.id}
+          key={data.currencyData.id}
+          newAmount={data.newAmount}
+          userCurrency={data.currencyData.userCurrency}
+          userAmount={data.currencyData.userAmount}
+          newCurrency={data.currencyData.newCurrency}
+          exchangeRate={data.exchangeRate}
+          date={data.date}
+          addBookmarked={addBookmarked}
+          bookmarkedTag={bookmarkedTag}
+          deleteCurrencyCard={deleteCurrencyCard}
         />
         )
       })

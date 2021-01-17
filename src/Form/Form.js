@@ -30,6 +30,7 @@ const Form = (props) => {
   
   return (
     <section >
+      <NavLink to='/currency-cards' className='nav'>See All Your Conversions</NavLink>
       <form className='user-input'>
         <input 
           type='text'
