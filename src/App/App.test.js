@@ -1,5 +1,4 @@
 import { render, screen, waitFor } from '@testing-library/react'
-import selectEvent from 'react-select-event'
 import App from './App'
 import { sampleApiData } from '../sampleApiData.js'
 import '@testing-library/jest-dom'  // npm install --save-dev @testing-library/jest-dom
