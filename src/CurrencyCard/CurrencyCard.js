@@ -40,6 +40,6 @@ CurrencyCard.propTypes = {
   exchangeRate: PropTypes.number.isRequired, 
   date: PropTypes.string.isRequired,
   addBookmarked: PropTypes.func.isRequired, 
-  bookmarkedTag: PropTypes.func.isRequired, 
+  bookmarkedTag: PropTypes.bool, 
   deleteCurrencyCard: PropTypes.func.isRequired,
 }

@@ -33,7 +33,7 @@ describe('Bookmarked', () => {
     )
   })
 
-  it('should render a bookmarked card if the user has bookmarked it', () => {
+  it('should render a currency card', () => {
     const currencyCardExchangeRate = screen.getByText(/at an exchange rate of:/i)
     expect(currencyCardExchangeRate).toBeInTheDocument()
   })
@@ -53,5 +53,4 @@ describe('Bookmarked', () => {
     expect(deleteCurrencyCard).toHaveBeenCalledTimes(1)
     expect(deleteCurrencyCard).toHaveBeenCalledWith(1234)
   })
-
 })
