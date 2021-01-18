@@ -30,16 +30,18 @@ const Form = (props) => {
     return (
       <section >
       <NavLink to='/currency-cards' className='nav'>See All Your Conversions</NavLink>
-      <form className='user-input' >
+      <form className='user-input' data-testid='form'>
+        <label htmlFor='currency-input'>Currency Data</label>
         <select 
           className='user-currency'
+          name="currency-input"
           data-testid='user-currency-dropdown'
           type='text'
           value={userCurrency}
           onChange={(event) => setUserCurrency(event.target.value)}>  
           {currencyCodes.map(code => {
             return (
-              <option key={code} value={code}>{code}</option>
+              <option key={code} value={code} data-testid={code}>{code}</option>
               )
             })}
         </select>
@@ -48,12 +50,14 @@ const Form = (props) => {
         min='1'
         max='10000'
         className='user-amount'
+        name="currency-input"
         placeholder='Amount to exchange (up to 10,000)'
         value={userAmount}
         onChange={(event) => setUserAmount(event.target.value)}
         />
         <select 
           className='new-currency'
+          name="currency-input"
           data-testid='new-currency-dropdown'
           type='text'
           value={newCurrency}
@@ -64,7 +68,7 @@ const Form = (props) => {
               )
             })}
         </select>
-      <NavLink to="/" className="nav">Please complete all fields</NavLink>
+      <h1>Please complete all fields</h1>
       </form>
     </section>
   )
