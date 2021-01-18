@@ -1,4 +1,5 @@
 import React from 'react'
+import { PropTypes } from 'prop-types'
 import { NavLink } from 'react-router-dom'
 import './ExchangeContainer.scss'
 import CurrencyCard from '../CurrencyCard/CurrencyCard.js'
@@ -34,7 +35,7 @@ const ExchangeContainer = ({ fusedData, addBookmarked, deleteCurrencyCard, bookm
       <section className='container'>
         <NavLink to="/" className="nav">Get a new Currency Exchange!</NavLink>
         <NavLink to="/bookmarked-conversions" className="nav">See Your Bookmarked Conversions</NavLink>
-        <h1 >This is the container for the currency cards</h1>
+        <h1 >Your Currency Conversions</h1>
         { currencyCards }
       </section>
     )
@@ -42,3 +43,10 @@ const ExchangeContainer = ({ fusedData, addBookmarked, deleteCurrencyCard, bookm
   }
 
 export default ExchangeContainer
+
+ExchangeContainer.propTypes = {
+  fusedData: PropTypes.array, 
+  addBookmarked: PropTypes.func, 
+  deleteCurrencyCard: PropTypes.func, 
+  bookmarkedTag: PropTypes.bool,
+}
