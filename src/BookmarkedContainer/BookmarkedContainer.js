@@ -1,4 +1,5 @@
 import React from 'react'
+import { PropTypes } from 'prop-types'
 import { NavLink } from 'react-router-dom'
 import './BookmarkedContainer.scss';
 import Bookmarked from '../Bookmarked/Bookmarked.js'
@@ -40,3 +41,9 @@ const BookmarkedContainer = ({ bookmarkedConversions, removeBookmarked, deleteCu
 }
 
 export default BookmarkedContainer;
+
+BookmarkedContainer.propTypes = {
+  bookmarkedConversions: PropTypes.array, 
+  removeBookmarked: PropTypes.func.isRequired, 
+  deleteCurrencyCard: PropTypes.func.isRequired,
+}
