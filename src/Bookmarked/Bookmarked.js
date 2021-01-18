@@ -1,4 +1,5 @@
 import React from 'react'
+import { PropTypes } from 'prop-types'
 import './Bookmarked.scss';
 
 const Bookmarked = ({ 
@@ -25,3 +26,14 @@ const Bookmarked = ({
 }
 
 export default Bookmarked;
+
+Bookmarked.propTypes = {
+  id: PropTypes.number.isRequired,
+  newAmount: PropTypes.number.isRequired,
+  userCurrency: PropTypes.string.isRequired, 
+  userAmount: PropTypes.number.isRequired, 
+  newCurrency: PropTypes.number.isRequired, 
+  exchangeRate: PropTypes.number.isRequired, 
+  deleteCurrencyCard: PropTypes.func.isRequired,
+  removeBookmarked: PropTypes.func.isRequired,
+};
