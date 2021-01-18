@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import Bookmarked from './Bookmarked'
-import { sampleApiData } from '../sampleApiData.js'
+import { sampleApiData, sampleBookmarkedCard } from '../sampleApiData.js'
 import '@testing-library/jest-dom'  // npm install --save-dev @testing-library/jest-dom
 import userEvent from '@testing-library/user-event'
 import { Router } from 'react-router-dom'
@@ -9,14 +9,7 @@ import { createMemoryHistory } from 'history'
 describe('Bookmarked', () => {
   const removeBookmarked = jest.fn()
   const deleteCurrencyCard = jest.fn()
-  const bookmarkedCard = {
-    id: 1234,
-    newAmount: 7.34,
-    userCurrency: "USD",
-    userAmount: 10,
-    newCurrency: "GBP",
-    exchangeRate: 0.7336110195,
-  }
+  const bookmarkedCard = sampleBookmarkedCard
   const history = createMemoryHistory()
   beforeEach(() => {
     history.location.pathname = '/bookmarked-conversions'

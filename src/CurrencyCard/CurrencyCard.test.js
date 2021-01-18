@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import CurrencyCard from './CurrencyCard'
-import { sampleApiData } from '../sampleApiData.js'
+import { sampleApiData, sampleCurrencyCard } from '../sampleApiData.js'
 import '@testing-library/jest-dom'  // npm install --save-dev @testing-library/jest-dom
 import userEvent from '@testing-library/user-event'
 import { Router } from 'react-router-dom'
@@ -10,32 +10,23 @@ describe('Bookmarked', () => {
   const removeBookmarked = jest.fn()
   const addBookmarked = jest.fn()
   const deleteCurrencyCard = jest.fn()
-  const bookmarkedCard = {
-    id: 1234,
-    newAmount: 7.34,
-    userCurrency: "USD",
-    userAmount: 10,
-    newCurrency: "GBP",
-    exchangeRate: 0.7336110195,
-    date: '2021-01-14',
-    bookmarkedTag: false,
-  }
+  const currencyCard = sampleCurrencyCard
   const history = createMemoryHistory()
   beforeEach(() => {
     history.location.pathname = '/bookmarked-conversions'
     render(
       <Router history={history}>
         <CurrencyCard 
-          id={bookmarkedCard.id}
-          key={bookmarkedCard.id}
-          newAmount={bookmarkedCard.newAmount}
-          userCurrency={bookmarkedCard.userCurrency}
-          userAmount={bookmarkedCard.userAmount}
-          newCurrency={bookmarkedCard.newCurrency}
-          exchangeRate={bookmarkedCard.exchangeRate}
-          date={bookmarkedCard.date}
+          id={currencyCard.id}
+          key={currencyCard.id}
+          newAmount={currencyCard.newAmount}
+          userCurrency={currencyCard.userCurrency}
+          userAmount={currencyCard.userAmount}
+          newCurrency={currencyCard.newCurrency}
+          exchangeRate={currencyCard.exchangeRate}
+          date={currencyCard.date}
           addBookmarked={addBookmarked}
-          bookmarkedTag={bookmarkedCard.bookmarkedTag}
+          bookmarkedTag={currencyCard.bookmarkedTag}
           deleteCurrencyCard={deleteCurrencyCard}
         />
     </Router>

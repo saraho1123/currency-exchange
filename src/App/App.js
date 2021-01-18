@@ -29,7 +29,7 @@ const App = () => {
 
   const addBookmarked = (id) => {
     const bookmarkedCards = fusedData.find(card => {
-      return card.currencyData.id == id
+      return card.currencyData.id === id
     })
     setBookmarkedConversions([...bookmarkedConversions, bookmarkedCards])
     setBookmarkedTag(true)

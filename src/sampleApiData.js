@@ -40,37 +40,139 @@ export const sampleApiData = {
 
 export const currencyCodes = [
   "Select Currency Code",
-  "CAD",
-  "HKD",
-  "ISK",
-  "PHP",
-  "DKK",
-  "HUF",
-  "CZK",
-  "GBP",
-  "RON",
-  "SEK",
-  "IDR",
-  "INR",
-  "BRL",
-  "RUB",
-  "HRK",
-  "JPY",
-  "THB",
-  "CHF",
-  "EUR",
-  "MYR",
-  "BGN",
-  "TRY",
-  "CNY",
-  "NOK",
-  "NZD",
-  "ZAR",
-  "USD",
-  "MXN",
-  "SGD",
-  "AUD",
-  "ILS",
-  "KRW",
-  "PLN",
+  "AUD", 
+  "BGN", 
+  "BRL", 
+  "CAD", 
+  "CHF", 
+  "CNY", 
+  "CZK", 
+  "DKK", 
+  "EUR", 
+  "GBP", 
+  "HKD", 
+  "HRK", 
+  "HUF", 
+  "IDR", 
+  "ILS", 
+  "INR", 
+  "ISK", 
+  "JPY", 
+  "KRW", 
+  "MXN", 
+  "MYR", 
+  "NOK", 
+  "NZD", 
+  "PHP", 
+  "PLN", 
+  "RON", 
+  "RUB", 
+  "SEK", 
+  "SGD", 
+  "THB", 
+  "TRY", 
+  "USD", 
+  "ZAR"
+]
+
+export const sampleCurrencyCard = {
+  id: 1234,
+  newAmount: 7.34,
+  userCurrency: "USD",
+  userAmount: 10,
+  newCurrency: "GBP",
+  exchangeRate: 0.7336110195,
+  date: '2021-01-14',
+  bookmarkedTag: false,
+}
+
+export const multipleSampleCurrencyCards = [
+  {
+    currencyData: 
+      {
+        id: 1234,
+        newCurrency: "PHP",
+        userAmount: 10,
+        userCurrency: "USD",
+      },
+    date: '2021-01-14',
+    exchangeRate: 48.0303530188,
+    newAmount: 480.29,
+    bookmarkedTag: false,
+  },
+  {
+    currencyData: 
+      {
+        id: 12345,
+        newCurrency: "GBP",
+        userAmount: 10,
+        userCurrency: "USD",
+      },
+    date: '2021-01-14',
+    exchangeRate: 0.7336110195,
+    newAmount: 7.34,
+    bookmarkedTag: false,
+  },
+  {
+    currencyData: 
+      {
+        id: 123456,
+        newCurrency: "NZD",
+        userAmount: 10,
+        userCurrency: "USD",
+      },
+    date: '2021-01-14',
+    exchangeRate: 1.3900527879,
+    newAmount: 13.94,
+    bookmarkedTag: false,
+  },
+]
+
+export const sampleBookmarkedCard = {
+  id: 1234,
+  newAmount: 7.34,
+  userCurrency: "USD",
+  userAmount: 10,
+  newCurrency: "GBP",
+  exchangeRate: 0.7336110195,
+  date: '2021-01-14',
+}
+
+export const multipleSampleBookmarkedCards = [
+  {
+    currencyData: 
+      {
+        id: 1234,
+        newCurrency: "PHP",
+        userAmount: 10,
+        userCurrency: "USD",
+      },
+    date: '2021-01-14',
+    exchangeRate: 48.0303530188,
+    newAmount: 480.29,
+  },
+  {
+    currencyData: 
+      {
+        id: 12345,
+        newCurrency: "GBP",
+        userAmount: 10,
+        userCurrency: "USD",
+      },
+    date: '2021-01-14',
+    exchangeRate: 0.7336110195,
+    newAmount: 7.34,
+  },
+  {
+    currencyData: 
+      {
+        id: 123456,
+        newCurrency: "NZD",
+        userAmount: 10,
+        userCurrency: "USD",
+      },
+    date: '2021-01-14',
+    exchangeRate: 1.3900527879,
+    newAmount: 13.94,
+  },
 ]

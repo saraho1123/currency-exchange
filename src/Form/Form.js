@@ -37,7 +37,7 @@ const Form = (props) => {
           onChange={(event) => setUserCurrency(event.target.value)}>  
           {currencyCodes.map(code => {
             return (
-              <option value={code}>{code}</option>
+              <option key={code} value={code}>{code}</option>
               )
             })}
         </select>
@@ -57,7 +57,7 @@ const Form = (props) => {
           onChange={(event) => setNewCurrency(event.target.value)}>  
           {currencyCodes.map(code => {
             return (
-              <option value={code}>{code}</option>
+              <option key={code} value={code}>{code}</option>
               )
             })}
         </select>
