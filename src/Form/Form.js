@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { PropTypes } from 'prop-types'
 import { NavLink } from 'react-router-dom'
 import { currencyCodes } from '../sampleApiData.js'
 import './Form.scss'
@@ -29,9 +30,10 @@ const Form = (props) => {
     return (
       <section >
       <NavLink to='/currency-cards' className='nav'>See All Your Conversions</NavLink>
-      <form className='user-input'>
+      <form className='user-input' >
         <select 
           className='user-currency'
+          data-testid='user-currency-dropdown'
           type='text'
           value={userCurrency}
           onChange={(event) => setUserCurrency(event.target.value)}>  
@@ -52,6 +54,7 @@ const Form = (props) => {
         />
         <select 
           className='new-currency'
+          data-testid='new-currency-dropdown'
           type='text'
           value={newCurrency}
           onChange={(event) => setNewCurrency(event.target.value)}>  
@@ -109,3 +112,7 @@ const Form = (props) => {
 }
 
 export default Form
+
+Form.propTypes = {
+  addCurrencyCard: PropTypes.func,
+}
