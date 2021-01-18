@@ -32,7 +32,7 @@ Bookmarked.propTypes = {
   newAmount: PropTypes.number.isRequired,
   userCurrency: PropTypes.string.isRequired, 
   userAmount: PropTypes.number.isRequired, 
-  newCurrency: PropTypes.number.isRequired, 
+  newCurrency: PropTypes.string.isRequired, 
   exchangeRate: PropTypes.number.isRequired, 
   deleteCurrencyCard: PropTypes.func.isRequired,
   removeBookmarked: PropTypes.func.isRequired,
