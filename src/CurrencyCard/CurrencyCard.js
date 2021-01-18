@@ -1,4 +1,5 @@
 import React from 'react'
+import { PropTypes } from 'prop-types'
 import './CurrencyCard.scss';
 
 const CurrencyCard = ({ 
@@ -29,3 +30,16 @@ const CurrencyCard = ({
 }
 
 export default CurrencyCard
+
+CurrencyCard.propTypes = {
+  id: PropTypes.number.isRequired, 
+  newAmount: PropTypes.number.isRequired, 
+  userCurrency: PropTypes.string.isRequired, 
+  userAmount: PropTypes.number.isRequired, 
+  newCurrency: PropTypes.string.isRequired, 
+  exchangeRate: PropTypes.number.isRequired, 
+  date: PropTypes.string.isRequired,
+  addBookmarked: PropTypes.func.isRequired, 
+  bookmarkedTag: PropTypes.func.isRequired, 
+  deleteCurrencyCard: PropTypes.func.isRequired,
+}
