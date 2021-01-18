@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import CurrencyCard from './CurrencyCard'
 import { sampleApiData, sampleCurrencyCard } from '../sampleApiData.js'
 import '@testing-library/jest-dom'  // npm install --save-dev @testing-library/jest-dom
@@ -54,5 +54,4 @@ describe('Bookmarked', () => {
     expect(deleteCurrencyCard).toHaveBeenCalledWith(1234)
   })
 
-    // could add tests that pathname is updated when nav links are clicked
 })
