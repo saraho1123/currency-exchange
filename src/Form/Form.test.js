@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react'
 import Form from './Form'
 import { sampleApiData } from '../sampleApiData.js'
 import '@testing-library/jest-dom'  // npm install --save-dev @testing-library/jest-dom
@@ -19,7 +19,7 @@ describe('Bookmarked', () => {
     newCurrency = 'PHP'
   })
 
-  it('should render the Form', () => {
+  it('should render the Form with message Please ', () => {
     render(
       <MemoryRouter>
         <Form 
@@ -37,12 +37,8 @@ describe('Bookmarked', () => {
     expect(formnewCurreny).toBeInTheDocument()
   })
 
-  it('should ask the user to Please Complete All Fields if all 3 fields are not complete', () => {
-
-  })
-
-
   it('should select a user currency, user amount and new currency with the associate values', async () => {
+    
     render(
       <MemoryRouter>
         <Form 
@@ -51,7 +47,7 @@ describe('Bookmarked', () => {
       </MemoryRouter>
     )
 
-    const filteredUserCurrency = screen.getByTestId('USD')
+    const filteredUserCurrency = screen.getByTestId('user-currency-dropdown')
     fireEvent.change(filteredUserCurrency, {
       target: {value: 'USD'}
     })
@@ -64,7 +60,7 @@ describe('Bookmarked', () => {
     // const userAmountChoice = await waitFor(() => screen.getByDisplayValue(/10/i))
 
 
-    const filteredNewCurrency = screen.getByTestId('PHP')
+    const filteredNewCurrency = screen.getByTestId('new-currency-dropdown')
     fireEvent.change(filteredNewCurrency, {
       target: {value: 'PHP'}
     })
@@ -85,24 +81,21 @@ describe('Bookmarked', () => {
       </MemoryRouter>
     )
 
-    const filteredUserCurrency = screen.getByTestId('USD')
+    const filteredUserCurrency = screen.getByTestId('user-currency-dropdown')
     fireEvent.change(filteredUserCurrency, {
       target: {value: 'USD'}
     })
-    // const dropdownUserCurrency = await waitFor(() => screen.getByDisplayValue(/usd/i))
 
     const userAmountInput = screen.getByPlaceholderText('Amount to exchange (up to 10,000)')
     fireEvent.change(userAmountInput, {
       target: {value: '10'}
     })
-    // const userAmountChoice = await waitFor(() => screen.getByDisplayValue(/10/i))
 
 
-    const filteredNewCurrency = screen.getByTestId('PHP')
+    const filteredNewCurrency = screen.getByTestId('new-currency-dropdown')
     fireEvent.change(filteredNewCurrency, {
       target: {value: 'PHP'}
     })
-    // const dropdownNewCurrency = await waitFor(() => screen.getByText('PHP'))
 
     expect(filteredUserCurrency).toHaveValue('USD')
     expect(userAmountInput).toHaveValue(10)
@@ -111,12 +104,56 @@ describe('Bookmarked', () => {
     expect(screen.getByRole('link', {
       name: /get currency conversion/i
     })).toBeInTheDocument()
-
-  //  userEvent.click(screen.getByRole('link', {
-  //     name: /get currency conversion/i
-  // })
+    // expect(addCurrencyCard).toHaveBeenCalledTimes(1)
+    // expect(addCurrencyCard).toHaveBeenCalledWith()
   })
 
-  // I think there should be some tests for the nav links
+  it('should call addCurrencyCard when Get Currency Conversion is clicked', () => {
+    render(
+      <MemoryRouter>
+        <Form 
+          addCurrencyCard={addCurrencyCard}        
+       />
+      </MemoryRouter>
+    )
 
+    Date.now = jest.fn().mockImplementation(() => 1584585306565);
+
+    const filteredUserCurrency = screen.getByTestId('user-currency-dropdown')
+    fireEvent.change(filteredUserCurrency, {
+      target: {value: 'USD'}
+    })
+
+    const userAmountInput = screen.getByPlaceholderText('Amount to exchange (up to 10,000)')
+    fireEvent.change(userAmountInput, {
+      target: {value: '10'}
+    })
+
+
+    const filteredNewCurrency = screen.getByTestId('new-currency-dropdown')
+    fireEvent.change(filteredNewCurrency, {
+      target: {value: 'PHP'}
+    })
+
+    expect(filteredUserCurrency).toHaveValue('USD')
+    expect(userAmountInput).toHaveValue(10)
+    expect(filteredNewCurrency).toHaveValue('PHP')
+
+    const getCurrencyButton = screen.getByRole('link', {
+      name: /get currency conversion/i
+    })
+
+    expect(getCurrencyButton).toBeInTheDocument()
+ 
+    fireEvent.click(getCurrencyButton)
+
+    expect(addCurrencyCard).toHaveBeenCalledTimes(1)
+    expect(addCurrencyCard).toHaveBeenCalledWith(
+      {
+        "id": Date.now(), 
+        "newCurrency": "PHP", 
+        "userAmount": "10", 
+        "userCurrency": "USD"
+      })
+  })
 })
