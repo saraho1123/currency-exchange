@@ -32,6 +32,7 @@ describe('Bookmarked', () => {
           exchangeRate={bookmarkedCard.exchangeRate}
           removeBookmarked={removeBookmarked}
           deleteCurrencyCard={deleteCurrencyCard}
+          // need to add date to bookmarked!! oops!
       />
     </Router>
     )
@@ -63,6 +64,8 @@ describe('Bookmarked', () => {
     expect(removeBookmarked).toHaveBeenCalledTimes(1)
     expect(removeBookmarked).toHaveBeenCalledWith(1234)
   })
+
+  // could add tests that pathname is updated when nav links are clicked
 })
 
 
