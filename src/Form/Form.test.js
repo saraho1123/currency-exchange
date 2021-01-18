@@ -1,5 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
-import selectEvent from 'react-select-event'
+import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import Form from './Form'
 import { sampleApiData } from '../sampleApiData.js'
 import '@testing-library/jest-dom'  // npm install --save-dev @testing-library/jest-dom
@@ -10,13 +9,17 @@ import { createMemoryHistory } from 'history'
 describe('Bookmarked', () => {
   const sampleData = sampleApiData
   const addCurrencyCard = jest.fn()
-  let formUserCurreny
-  let formUserAmount
-  let formnNewCurreny
+  let userCurrency
+  let userAmount
+  let newCurrency
 
-  const history = createMemoryHistory()
   beforeEach(() => {
-    // history.location.pathName='/'
+    userCurrency = 'USD'
+    userAmount = 10
+    newCurrency = 'PHP'
+  })
+
+  it('should render the Form', () => {
     render(
       <MemoryRouter>
         <Form 
@@ -24,23 +27,14 @@ describe('Bookmarked', () => {
         />
       </MemoryRouter>
     )
-  })
-  screen.debug()
-
-    // formUserCurreny = screen.getByTestId('user-currency-dropdown')
-    // selectForm = screen.getByTestId('select-form')
-
-    // formUserAmount = screen.getByPlaceholderText(/amount to exchange \(up to 10,000\)/i)
-    // formNewCurreny = screen.getByTestId('new-currency-dropdown')
-
-
-  it('should render the Form on page load', () => {
-      const formUserCurreny = screen.getByTestId('user-currency-dropdown')
-      // const formUserAmount = screen.getByPlaceholderText(/amount to exchange \(up to 10,000\)/i)
-      // const formnewCurreny = screen.getByTestId('new-currency-dropdown')
+    const form = screen.getByTestId('form')
+    const formUserCurreny = screen.getByTestId('user-currency-dropdown')
+    const formUserAmount = screen.getByPlaceholderText(/amount to exchange \(up to 10,000\)/i)
+    const formnewCurreny = screen.getByTestId('new-currency-dropdown')
+    expect(form).toBeInTheDocument()
     expect(formUserCurreny).toBeInTheDocument()
-    // expect(formUserAmount).toBeInTheDocument()
-    // expect(formnewCurreny).toBeInTheDocument()
+    expect(formUserAmount).toBeInTheDocument()
+    expect(formnewCurreny).toBeInTheDocument()
   })
 
   it('should ask the user to Please Complete All Fields if all 3 fields are not complete', () => {
@@ -48,23 +42,79 @@ describe('Bookmarked', () => {
   })
 
 
-  it('should display a currency card when all fields are complete and the Get Currency Conversion button is clicked', async () => {
-    // // await selectEvent.select(getByLabelText('Food'), ['Strawberry', 'Mango'])
-    // const userCurrencyChoice = await waitFor(() => screen.getAllByText(/usd/i))
-    // const userAmountChoice = await waitFor(() => screen.getByPlaceholderText('Amount to exchange (up to 10,000)'))
-    // const newCurrencyChoice = await waitFor(() => screen.getAllByText(/php/i))
+  it('should select a user currency, user amount and new currency with the associate values', async () => {
+    render(
+      <MemoryRouter>
+        <Form 
+          addCurrencyCard={addCurrencyCard}        
+        />
+      </MemoryRouter>
+    )
 
-    // expect(getByTestId('user-currency-dropdown')).toHaveFormValues({ usd: '' })
+    const filteredUserCurrency = screen.getByTestId('USD')
+    fireEvent.change(filteredUserCurrency, {
+      target: {value: 'USD'}
+    })
+    // const dropdownUserCurrency = await waitFor(() => screen.getByDisplayValue(/usd/i))
 
-    // selectEvent.select(userCurrencyChoice)
-    // selectEvent.select(userAmountChoice)
-    // selectEvent.select(newCurrencyChoice)
+    const userAmountInput = screen.getByPlaceholderText('Amount to exchange (up to 10,000)')
+    fireEvent.change(userAmountInput, {
+      target: {value: '10'}
+    })
+    // const userAmountChoice = await waitFor(() => screen.getByDisplayValue(/10/i))
 
-    // userEvent.click(screen.getByText('Get Currency Conversion'))
+
+    const filteredNewCurrency = screen.getByTestId('PHP')
+    fireEvent.change(filteredNewCurrency, {
+      target: {value: 'PHP'}
+    })
+    // const dropdownNewCurrency = await waitFor(() => screen.getByText('PHP'))
+
+
+    expect(filteredUserCurrency).toHaveValue('USD')
+    expect(userAmountInput).toHaveValue(10)
+    expect(filteredNewCurrency).toHaveValue('PHP')
   })
 
-  it('should show a message if there are no currency cards', () => {
+  it('should show Get Currency Conversion nav link if all fields are complete', () => {
+    render(
+      <MemoryRouter>
+        <Form 
+          addCurrencyCard={addCurrencyCard}        
+        />
+      </MemoryRouter>
+    )
 
+    const filteredUserCurrency = screen.getByTestId('USD')
+    fireEvent.change(filteredUserCurrency, {
+      target: {value: 'USD'}
+    })
+    // const dropdownUserCurrency = await waitFor(() => screen.getByDisplayValue(/usd/i))
+
+    const userAmountInput = screen.getByPlaceholderText('Amount to exchange (up to 10,000)')
+    fireEvent.change(userAmountInput, {
+      target: {value: '10'}
+    })
+    // const userAmountChoice = await waitFor(() => screen.getByDisplayValue(/10/i))
+
+
+    const filteredNewCurrency = screen.getByTestId('PHP')
+    fireEvent.change(filteredNewCurrency, {
+      target: {value: 'PHP'}
+    })
+    // const dropdownNewCurrency = await waitFor(() => screen.getByText('PHP'))
+
+    expect(filteredUserCurrency).toHaveValue('USD')
+    expect(userAmountInput).toHaveValue(10)
+    expect(filteredNewCurrency).toHaveValue('PHP')
+
+    expect(screen.getByRole('link', {
+      name: /get currency conversion/i
+    })).toBeInTheDocument()
+
+  //  userEvent.click(screen.getByRole('link', {
+  //     name: /get currency conversion/i
+  // })
   })
 
   // I think there should be some tests for the nav links
