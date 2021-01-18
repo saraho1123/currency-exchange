@@ -12,7 +12,7 @@ const Form = (props) => {
   const getUserData = async () => {
     const newExchange = {
       id: Date.now(),
-      userCurrency, 
+      userCurrency,
       userAmount,
       newCurrency,
     }
@@ -26,95 +26,95 @@ const Form = (props) => {
     setNewCurrency('')
   }
 
-  if(userCurrency && userAmount && newCurrency) {
+  if (userCurrency && userAmount && newCurrency) {
     return (
       <section >
-      <NavLink to='/currency-cards' className='nav'>See All Your Conversions</NavLink>
-      <form className='user-input' data-testid='form'>
-        <label htmlFor='currency-input'>Currency Data</label>
-        <select 
-          className='user-currency'
-          name="currency-input"
-          data-testid='user-currency-dropdown'
-          type='text'
-          value={userCurrency}
-          onChange={(event) => setUserCurrency(event.target.value)}>  
-          {currencyCodes.map(code => {
-            return (
-              <option key={code} value={code} data-testid={code}>{code}</option>
-              )
-            })}
-        </select>
-        <input           
-        type='number'
-        min='1'
-        max='10000'
-        className='user-amount'
-        name="currency-input"
-        placeholder='Amount to exchange (up to 10,000)'
-        value={userAmount}
-        onChange={(event) => setUserAmount(event.target.value)}
-        />
-        <select 
-          className='new-currency'
-          name="currency-input"
-          data-testid='new-currency-dropdown'
-          type='text'
-          value={newCurrency}
-          onChange={(event) => setNewCurrency(event.target.value)}>  
-          {currencyCodes.map(code => {
-            return (
-              <option key={code} value={code}>{code}</option>
-              )
-            })}
-        </select>
-            <NavLink onClick={getUserData} to="/currency-cards" className="nav">Get Currency Conversion </NavLink>
-      </form>
-    </section>
-  )
-} else {
-  return (
-    <section >
         <NavLink to='/currency-cards' className='nav'>See All Your Conversions</NavLink>
         <form className='user-input' data-testid='form'>
-        <label htmlFor='currency-input'>Currency Data</label>
-        <select 
-          className='user-currency'
-          name="currency-input"
-          data-testid='user-currency-dropdown'
-          type='text'
-          value={userCurrency}
-          onChange={(event) => setUserCurrency(event.target.value)}>  
-          {currencyCodes.map(code => {
-            return (
-              <option key={code} value={code} data-testid={code}>{code}</option>
+          <label htmlFor='currency-input'>Currency Data</label>
+          <select
+            className='user-currency'
+            name="currency-input"
+            data-testid='user-currency-dropdown'
+            type='text'
+            value={userCurrency}
+            onChange={(event) => setUserCurrency(event.target.value)}>
+            {currencyCodes.map(code => {
+              return (
+                <option key={code} value={code} data-testid={code}>{code}</option>
               )
             })}
-        </select>
-        <input           
-        type='number'
-        min='1'
-        max='10000'
-        className='user-amount'
-        name="currency-input"
-        placeholder='Amount to exchange (up to 10,000)'
-        value={userAmount}
-        onChange={(event) => setUserAmount(event.target.value)}
-        />
-        <select 
-          className='new-currency'
-          name="currency-input"
-          data-testid='new-currency-dropdown'
-          type='text'
-          value={newCurrency}
-          onChange={(event) => setNewCurrency(event.target.value)}>  
-          {currencyCodes.map(code => {
-            return (
-              <option key={code} value={code}>{code}</option>
+          </select>
+          <input
+            type='number'
+            min='1'
+            max='10000'
+            className='user-amount'
+            name="currency-input"
+            placeholder='Amount to exchange (up to 10,000)'
+            value={userAmount}
+            onChange={(event) => setUserAmount(event.target.value)}
+          />
+          <select
+            className='new-currency'
+            name="currency-input"
+            data-testid='new-currency-dropdown'
+            type='text'
+            value={newCurrency}
+            onChange={(event) => setNewCurrency(event.target.value)}>
+            {currencyCodes.map(code => {
+              return (
+                <option key={code} value={code}>{code}</option>
               )
             })}
-        </select>
-        <h1>Please complete all fields</h1>
+          </select>
+          <NavLink onClick={getUserData} to="/currency-cards" className="nav">Get Currency Conversion </NavLink>
+        </form>
+      </section>
+    )
+  } else {
+    return (
+      <section >
+        <NavLink to='/currency-cards' className='nav'>See All Your Conversions</NavLink>
+        <form className='user-input' data-testid='form'>
+          <label htmlFor='currency-input'>Currency Data</label>
+          <select
+            className='user-currency'
+            name="currency-input"
+            data-testid='user-currency-dropdown'
+            type='text'
+            value={userCurrency}
+            onChange={(event) => setUserCurrency(event.target.value)}>
+            {currencyCodes.map(code => {
+              return (
+                <option key={code} value={code} data-testid={code}>{code}</option>
+              )
+            })}
+          </select>
+          <input
+            type='number'
+            min='1'
+            max='10000'
+            className='user-amount'
+            name="currency-input"
+            placeholder='Amount to exchange (up to 10,000)'
+            value={userAmount}
+            onChange={(event) => setUserAmount(event.target.value)}
+          />
+          <select
+            className='new-currency'
+            name="currency-input"
+            data-testid='new-currency-dropdown'
+            type='text'
+            value={newCurrency}
+            onChange={(event) => setNewCurrency(event.target.value)}>
+            {currencyCodes.map(code => {
+              return (
+                <option key={code} value={code}>{code}</option>
+              )
+            })}
+          </select>
+          <h1>Please complete all fields</h1>
         </form>
       </section>
     )

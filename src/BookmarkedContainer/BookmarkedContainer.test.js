@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import BookmarkedContainer from './BookmarkedContainer'
 import { sampleApiData, multipleSampleBookmarkedCards } from '../sampleApiData.js'
-import '@testing-library/jest-dom'  // npm install --save-dev @testing-library/jest-dom
+import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 import { Router } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
@@ -64,5 +64,4 @@ describe('Bookmarked', () => {
     }))
     await waitFor(() => expect(history.location.pathname).toBe('/currency-cards'))
   })
-
 })

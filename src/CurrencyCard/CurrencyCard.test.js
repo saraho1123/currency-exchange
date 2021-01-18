@@ -1,13 +1,12 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import CurrencyCard from './CurrencyCard'
 import { sampleApiData, sampleCurrencyCard } from '../sampleApiData.js'
-import '@testing-library/jest-dom'  // npm install --save-dev @testing-library/jest-dom
+import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 import { Router } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
 
 describe('Bookmarked', () => {
-  const removeBookmarked = jest.fn()
   const addBookmarked = jest.fn()
   const deleteCurrencyCard = jest.fn()
   const currencyCard = sampleCurrencyCard

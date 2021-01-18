@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import ExchangeContainer from './ExchangeContainer'
 import { sampleApiData, multipleSampleCurrencyCards } from '../sampleApiData.js'
-import '@testing-library/jest-dom'  // npm install --save-dev @testing-library/jest-dom
+import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 import { Router } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
@@ -9,7 +9,6 @@ import { createMemoryHistory } from 'history'
 describe('Bookmarked', () => {
   const sampleFusedCards = multipleSampleCurrencyCards
   const noFusedCards = []
-  const removeBookmarked = jest.fn()
   const addBookmarked = jest.fn()
   const deleteCurrencyCard = jest.fn()
   const history = createMemoryHistory()

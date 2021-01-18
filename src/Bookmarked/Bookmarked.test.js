@@ -23,9 +23,9 @@ describe('Bookmarked', () => {
           userAmount={bookmarkedCard.userAmount}
           newCurrency={bookmarkedCard.newCurrency}
           exchangeRate={bookmarkedCard.exchangeRate}
+          date={bookmarkedCard.date}
           removeBookmarked={removeBookmarked}
           deleteCurrencyCard={deleteCurrencyCard}
-          // need to add date to bookmarked!! oops!
       />
     </Router>
     )

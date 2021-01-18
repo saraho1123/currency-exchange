@@ -2,9 +2,8 @@ import { render, screen, fireEvent, waitFor, act } from '@testing-library/react'
 import Form from './Form'
 import { sampleApiData } from '../sampleApiData.js'
 import '@testing-library/jest-dom'  // npm install --save-dev @testing-library/jest-dom
-import userEvent from '@testing-library/user-event'
-import { Router, MemoryRouter } from 'react-router-dom'
-import { createMemoryHistory } from 'history'
+import { MemoryRouter } from 'react-router-dom'
+
 
 describe('Bookmarked', () => {
   const sampleData = sampleApiData
@@ -22,8 +21,8 @@ describe('Bookmarked', () => {
   it('should render the Form with message Please ', () => {
     render(
       <MemoryRouter>
-        <Form 
-          addCurrencyCard={addCurrencyCard}        
+        <Form
+          addCurrencyCard={addCurrencyCard}
         />
       </MemoryRouter>
     )
@@ -38,34 +37,28 @@ describe('Bookmarked', () => {
   })
 
   it('should select a user currency, user amount and new currency with the associate values', async () => {
-    
     render(
       <MemoryRouter>
-        <Form 
-          addCurrencyCard={addCurrencyCard}        
+        <Form
+          addCurrencyCard={addCurrencyCard}
         />
       </MemoryRouter>
     )
 
     const filteredUserCurrency = screen.getByTestId('user-currency-dropdown')
     fireEvent.change(filteredUserCurrency, {
-      target: {value: 'USD'}
+      target: { value: 'USD' }
     })
-    // const dropdownUserCurrency = await waitFor(() => screen.getByDisplayValue(/usd/i))
 
     const userAmountInput = screen.getByPlaceholderText('Amount to exchange (up to 10,000)')
     fireEvent.change(userAmountInput, {
-      target: {value: '10'}
+      target: { value: '10' }
     })
-    // const userAmountChoice = await waitFor(() => screen.getByDisplayValue(/10/i))
-
 
     const filteredNewCurrency = screen.getByTestId('new-currency-dropdown')
     fireEvent.change(filteredNewCurrency, {
-      target: {value: 'PHP'}
+      target: { value: 'PHP' }
     })
-    // const dropdownNewCurrency = await waitFor(() => screen.getByText('PHP'))
-
 
     expect(filteredUserCurrency).toHaveValue('USD')
     expect(userAmountInput).toHaveValue(10)
@@ -75,26 +68,26 @@ describe('Bookmarked', () => {
   it('should show Get Currency Conversion nav link if all fields are complete', () => {
     render(
       <MemoryRouter>
-        <Form 
-          addCurrencyCard={addCurrencyCard}        
+        <Form
+          addCurrencyCard={addCurrencyCard}
         />
       </MemoryRouter>
     )
 
     const filteredUserCurrency = screen.getByTestId('user-currency-dropdown')
     fireEvent.change(filteredUserCurrency, {
-      target: {value: 'USD'}
+      target: { value: 'USD' }
     })
 
     const userAmountInput = screen.getByPlaceholderText('Amount to exchange (up to 10,000)')
     fireEvent.change(userAmountInput, {
-      target: {value: '10'}
+      target: { value: '10' }
     })
 
 
     const filteredNewCurrency = screen.getByTestId('new-currency-dropdown')
     fireEvent.change(filteredNewCurrency, {
-      target: {value: 'PHP'}
+      target: { value: 'PHP' }
     })
 
     expect(filteredUserCurrency).toHaveValue('USD')
@@ -104,16 +97,15 @@ describe('Bookmarked', () => {
     expect(screen.getByRole('link', {
       name: /get currency conversion/i
     })).toBeInTheDocument()
-    // expect(addCurrencyCard).toHaveBeenCalledTimes(1)
-    // expect(addCurrencyCard).toHaveBeenCalledWith()
+
   })
 
   it('should call addCurrencyCard when Get Currency Conversion is clicked', () => {
     render(
       <MemoryRouter>
-        <Form 
-          addCurrencyCard={addCurrencyCard}        
-       />
+        <Form
+          addCurrencyCard={addCurrencyCard}
+        />
       </MemoryRouter>
     )
 
@@ -121,18 +113,17 @@ describe('Bookmarked', () => {
 
     const filteredUserCurrency = screen.getByTestId('user-currency-dropdown')
     fireEvent.change(filteredUserCurrency, {
-      target: {value: 'USD'}
+      target: { value: 'USD' }
     })
 
     const userAmountInput = screen.getByPlaceholderText('Amount to exchange (up to 10,000)')
     fireEvent.change(userAmountInput, {
-      target: {value: '10'}
+      target: { value: '10' }
     })
-
 
     const filteredNewCurrency = screen.getByTestId('new-currency-dropdown')
     fireEvent.change(filteredNewCurrency, {
-      target: {value: 'PHP'}
+      target: { value: 'PHP' }
     })
 
     expect(filteredUserCurrency).toHaveValue('USD')
@@ -144,15 +135,15 @@ describe('Bookmarked', () => {
     })
 
     expect(getCurrencyButton).toBeInTheDocument()
- 
+
     fireEvent.click(getCurrencyButton)
 
     expect(addCurrencyCard).toHaveBeenCalledTimes(1)
     expect(addCurrencyCard).toHaveBeenCalledWith(
       {
-        "id": Date.now(), 
-        "newCurrency": "PHP", 
-        "userAmount": "10", 
+        "id": Date.now(),
+        "newCurrency": "PHP",
+        "userAmount": "10",
         "userCurrency": "USD"
       })
   })

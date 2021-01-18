@@ -14,7 +14,7 @@ const App = () => {
   const [fusedData, setFusedData] = useState([])
   const [bookmarkedConversions, setBookmarkedConversions] = useState([])
 
-  const addCurrencyCard = (newCurrencyCardInfo) => { 
+  const addCurrencyCard = (newCurrencyCardInfo) => {
     setCurrencyData(newCurrencyCardInfo)
     setUseEffectSwitch(true)
   }
@@ -42,21 +42,21 @@ const App = () => {
     setBookmarkedConversions(filteredCards)
     setBookmarkedTag(false)
   }
-  
+
   useEffect(() => {
-    if(useEffectSwitch) {
+    if (useEffectSwitch) {
       getExchangeRates(currencyData.userCurrency)
-      .then(data =>  {
-        consolidateData(data.rates[currencyData.newCurrency], data.date)
-      })
-      .catch(error => console.log(error))
+        .then(data => {
+          consolidateData(data.rates[currencyData.newCurrency], data.date)
+        })
+        .catch(error => console.log(error))
       setUseEffectSwitch(false)
     }
 
   }, [currencyData])
 
   const calculateNewAmount = (exRate) => {
-    const newAmount = Math.round(1000 * exRate)/1000 * currencyData.userAmount
+    const newAmount = Math.round(1000 * exRate) / 1000 * currencyData.userAmount
     return newAmount
   }
 
@@ -74,49 +74,49 @@ const App = () => {
   return (
     <main>
       <section>
-      <h1>Currency Exchange</h1>
-      <Switch>
-        <Route 
-          path='/currency-cards'
-          render={() => {
-            return(
-              fusedData  && 
-              <ExchangeContainer 
-                fusedData={fusedData}
-                addBookmarked={addBookmarked}
-                deleteCurrencyCard={deleteCurrencyCard}
-                bookmarkedTag={bookmarkedTag}
-              />
-            )
-          }}
-        />
-        <Route 
-          exact
-          path='/bookmarked-conversions'
-          render={() => {
-            return(
-              fusedData  && 
-              <BookmarkedContainer 
-                bookmarkedConversions={bookmarkedConversions}
-                deleteCurrencyCard={deleteCurrencyCard}
-                removeBookmarked={removeBookmarked}
-              />
-            )
-          }}
-        />
-        <Route
-        exact
-        path='/'
-        render={() => {
-          return (
-            <Form 
-              addCurrencyCard={addCurrencyCard} 
-            />
-          )
-        }}
-        />
-      </Switch>
-    </section>
+        <h1>Currency Exchange</h1>
+        <Switch>
+          <Route
+            path='/currency-cards'
+            render={() => {
+              return (
+                fusedData &&
+                <ExchangeContainer
+                  fusedData={fusedData}
+                  addBookmarked={addBookmarked}
+                  deleteCurrencyCard={deleteCurrencyCard}
+                  bookmarkedTag={bookmarkedTag}
+                />
+              )
+            }}
+          />
+          <Route
+            exact
+            path='/bookmarked-conversions'
+            render={() => {
+              return (
+                fusedData &&
+                <BookmarkedContainer
+                  bookmarkedConversions={bookmarkedConversions}
+                  deleteCurrencyCard={deleteCurrencyCard}
+                  removeBookmarked={removeBookmarked}
+                />
+              )
+            }}
+          />
+          <Route
+            exact
+            path='/'
+            render={() => {
+              return (
+                <Form
+                  addCurrencyCard={addCurrencyCard}
+                />
+              )
+            }}
+          />
+        </Switch>
+      </section>
       <footer>Curreny Rates for the day take from: [put the api here!]</footer>
     </main>
   )
