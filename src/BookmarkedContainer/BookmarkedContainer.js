@@ -24,6 +24,7 @@ const BookmarkedContainer = ({ bookmarkedConversions, removeBookmarked, deleteCu
           userAmount={data.currencyData.userAmount}
           newCurrency={data.currencyData.newCurrency}
           exchangeRate={data.exchangeRate}
+          date={data.date}
           removeBookmarked={removeBookmarked}
           deleteCurrencyCard={deleteCurrencyCard}
         />
@@ -32,9 +33,11 @@ const BookmarkedContainer = ({ bookmarkedConversions, removeBookmarked, deleteCu
       return (
         <section className='bookmarked-container'>
           <NavLink to="/" className="nav">Get a new Currency Exchange!</NavLink>
-          <NavLink to='/currency-cards' className='nav'>See All Your Conversions</NavLink>
           <h1 >Your Bookmarked Conversions</h1>
-          { currencyCards }
+          <NavLink to='/currency-cards' className='nav'>See All Your Conversions</NavLink>
+          <div className='cards-container'>
+            { currencyCards }
+          </div>
         </section>
       )
   }

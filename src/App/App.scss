@@ -25,7 +25,27 @@ h1 {
 
 footer{
   text-align: center;
-  margin: 10em;
+  margin: 10em 0;
+}
+
+.nav {
+  margin: 0 2em 0 2em;
+  box-shadow: 3px 3px 3px grey;
+}
+
+.nav:hover {
+  background: grey;
+}
+
+button {
+  background: none;
+  box-shadow: 3px 3px 3px grey;
+  border: none;
+  color: white;
+}
+
+button:hover {
+  background: grey;
 }
 
 @keyframes App-logo-spin {

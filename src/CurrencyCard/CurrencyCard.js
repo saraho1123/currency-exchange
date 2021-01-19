@@ -17,8 +17,9 @@ const CurrencyCard = ({
   return (
     <section className='currency-card'>
       <button onClick={() => deleteCurrencyCard(id)}>🗑</button>
-      <p>On {date}, {userAmount} {userCurrency} is worth: </p>
-      <h1>{newAmount} {newCurrency}</h1>
+      <p>On {date}, </p>
+      <p>{userAmount} {userCurrency} is worth: </p>
+      <h1 className='new-conversion'>{newAmount} {newCurrency}</h1>
       <p>at an exchange rate of: <b>{exchangeRate}</b></p>
       {!bookmarkedTag &&
         <button
