@@ -9,7 +9,7 @@ My biggest challenge came with having to manipulate the data from the api (use t
 
 My other challenge is with integration testing. I am improving! But I still find it to be a bit of a block as I move through the user events on the screen to make sure what is rendering is correct. It is a fun challenge though - most of the time! It is often a bit of a hunt, with a good amount of research tossed in!
 
-The description and requirements for this project in the [Project Spec](https://frontend.turing.io/projects/module-3/binary-challenge.html).
+The description and requirements for this project can be found in the [Project Spec](https://frontend.turing.io/projects/module-3/binary-challenge.html).
 
 
 ## How To Access This Application
