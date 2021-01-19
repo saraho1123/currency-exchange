@@ -2,7 +2,7 @@
   "name": "currency-exchange",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/saraho1123/currency-exchange",
+  "homepage": "https://sarah01123.github.io/currency-exchange",
   "dependencies": {
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.0",
@@ -16,6 +16,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",  
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "build": "react-scripts build",
