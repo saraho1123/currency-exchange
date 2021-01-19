@@ -1,4 +1,4 @@
-# Currency Exchange - Final Solo Project for [Turing School of Software & Design](https://turing.io/) Mod 3
+# [Currency Exchange](https://github.com/saraho1123/currency-exchange) - Final Solo Project for [Turing](https://turing.io/) Mod 3
 
 ## Abstract
 For our final project of Mod 3, we were asked to choose an API and build an app based on the data we could access. We were also required to use React Router. I also chose to use React with Hooks. 
