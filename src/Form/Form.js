@@ -32,11 +32,12 @@ const Form = (props) => {
         <div className="link-to-cards">        
           <NavLink to='/currency-cards' className='nav'>See All Your Conversions</NavLink>
           </div>
-        <form className='user-input' data-testid='form'>
+        <form className='user-input' data-testid='form' aria-label="currency-input">
           <label htmlFor='currency-input'></label>
           <div className='forms'>
             <select
               className='user-currency input'
+              aria-label="user-currency-input"
               name="currency-input"
               data-testid='user-currency-dropdown'
               type='text'
@@ -49,17 +50,19 @@ const Form = (props) => {
               })}
             </select>
             <input
+              className='user-amount input'
+              aria-label="user-amount-input"
+              name="currency-input"
               type='number'
               min='1'
               max='10000'
-              className='user-amount input'
-              name="currency-input"
               placeholder='Amount to exchange (up to 10,000)'
               value={userAmount}
               onChange={(event) => setUserAmount(event.target.value)}
             />
             <select
               className='new-currency input'
+              aria-label="new-currency-input"
               name="currency-input"
               data-testid='new-currency-dropdown'
               type='text'
@@ -82,11 +85,12 @@ const Form = (props) => {
         <div className="link-to-cards">
         <NavLink to='/currency-cards' className='nav'>See All Your Conversions</NavLink>
         </div>
-        <form className='user-input' data-testid='form'>
+        <form className='user-input' data-testid='form' aria-label='currency-input'>
           <label htmlFor='currency-input'></label>
         <div className='forms'>
           <select
             className='user-currency input'
+            aria-label="user-currency-input"
             name="currency-input"
             data-testid='user-currency-dropdown'
             type='text'
@@ -99,17 +103,19 @@ const Form = (props) => {
             })}
           </select>
           <input
+            className='user-amount input'
+            aria-label="user-amount-input"
+            name="currency-input"
             type='number'
             min='1'
             max='10000'
-            className='user-amount  input'
-            name="currency-input"
             placeholder='Amount to exchange (up to 10,000)'
             value={userAmount}
             onChange={(event) => setUserAmount(event.target.value)}
           />
           <select
             className='new-currency input'
+            aria-label="new-currency-input"
             name="currency-input"
             data-testid='new-currency-dropdown'
             type='text'

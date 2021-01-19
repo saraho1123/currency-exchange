@@ -33,8 +33,8 @@ const BookmarkedContainer = ({ bookmarkedConversions, removeBookmarked, deleteCu
       return (
         <section className='bookmarked-container'>
           <NavLink to="/" className="nav">Get a new Currency Exchange!</NavLink>
-          <h1 >Your Bookmarked Conversions</h1>
           <NavLink to='/currency-cards' className='nav'>See All Your Conversions</NavLink>
+          <h1 >Your Bookmarked Conversions</h1>
           <div className='cards-container'>
             { currencyCards }
           </div>
