@@ -1,11 +1,11 @@
-# Currency Exchange
+# Currency Exchange - Final Solo Project for [Turing School of Software & Design](https://turing.io/) Mod 3
 
 ## Abstract
-This project was is for the final solo project for Mod 3 at [Turing School of Software & Design](https://turing.io/). We were asked to choose an API and build an app based on the data we could access. We were also required to use React Router. I also chose to use React with Hooks. 
+For our final project of Mod 3, we were asked to choose an API and build an app based on the data we could access. We were also required to use React Router. I also chose to use React with Hooks. 
 
-For my API I choose to make a Currency Exchange app based on the [Foreign exchange rates API](https://exchangeratesapi.io/). I love to travel and have even lived overseas for a time. Exchange rates are continuously changing and it becomes a part of normal life to keep in mind what my money is worth in whichever currencies I am carrying. I know there are plenty of currency exchange rate websites and apps. I am not making something new! But I did make something that is interesting to me personally and that I found to be a fun challenge.
+I choose to make a Currency Exchange app based on the [Foreign exchange rates API](https://exchangeratesapi.io/). I love to travel and have even lived overseas for a time. Exchange rates are continuously changing and it becomes a part of normal life overseas to keep in mind what my money is worth in whichever currencies I am carrying. I know there are plenty of currency exchange rate websites and apps already in existence. I am not making something new! But I did make something that is interesting to me personally and that I found to be a fun challenge.
 
-My biggest challenge came with having to manipulate the data from the api (use the correct exchange rate to multiple with the amount the user entered for their currency). I believe that most of my challenges came from using React with Hooks and that I am still learning how to `useState` and `setState` in the appropriate places.
+My biggest challenge came with having to manipulate the data from the api (use the correct exchange rate to multiple with the amount the user entered for their currency). I believe that most of my challenges came from using React with Hooks and that I am still learning how to `useState` and `useEffect` in the appropriate places.
 
 My other challenge is with integration testing. I am improving! But I still find it to be a bit of a block as I move through the user events on the screen to make sure what is rendering is correct. It is a fun challenge though - most of the time! It is often a bit of a hunt, with a good amount of research tossed in!
 
