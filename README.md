@@ -25,18 +25,9 @@
 + TDD: React Testing Library, Jest
 
 
-## Screenshots
+## Gif of Currency Exchange App
 
-[Form ]()
-
-~
-
-[Currency Conversion Cards]()
-
-~
-
-[Bookmarked Conversions]()
-
+![Currency Exchange App Gif](/gif/currency_exchange.gif)
 
 
 ## Next Steps
