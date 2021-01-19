@@ -117,7 +117,7 @@ const App = () => {
           />
         </Switch>
       </section>
-      <footer>Curreny Rates for the day take from: [put the api here!]</footer>
+      <footer><p>Curreny Rates for the day take from: </p>  <a href='https://github.com/exchangeratesapi/exchangeratesapi'>Exchange Rates API</a></footer>
     </main>
   )
 }

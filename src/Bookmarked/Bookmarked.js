@@ -9,14 +9,16 @@ const Bookmarked = ({
   userAmount, 
   newCurrency, 
   exchangeRate, 
+  date,
   deleteCurrencyCard,
   removeBookmarked }) => {
   if(id !== undefined) {
     return (
       <section className='bookmarked'>
         <button onClick={() => deleteCurrencyCard(id)}>🗑</button>
-        <h1>{userAmount} {userCurrency} is worth: </h1>
-        <h1>{newAmount} {newCurrency}</h1>        
+        <p>On {date}, </p>
+        <p>{userAmount} {userCurrency} is worth: </p>
+        <h1 className='new-conversion'>{newAmount} {newCurrency}</h1>        
         <h1>at an exchange rate of: </h1>            
         <h1>{exchangeRate}</h1> 
         <button onClick={()=> removeBookmarked(id)}>Remove From Bookmarked Conversions</button>

@@ -1,3 +1,18 @@
 .currency-card {
-  border: blue solid 10px;
+  border: white solid 5px;
+  width: 20vw;
+  min-width: 255px;
+  padding: 1em;
+  margin: 1em;
+  border-radius: 1em;
+}
+
+
+.new-conversion {
+  font-size: x-large;
+}
+
+
+button:hover {
+  background: grey;
 }

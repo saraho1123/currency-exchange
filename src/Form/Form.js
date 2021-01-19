@@ -28,58 +28,69 @@ const Form = (props) => {
 
   if (userCurrency && userAmount && newCurrency) {
     return (
-      <section >
-        <NavLink to='/currency-cards' className='nav'>See All Your Conversions</NavLink>
-        <form className='user-input' data-testid='form'>
-          <label htmlFor='currency-input'>Currency Data</label>
-          <select
-            className='user-currency'
-            name="currency-input"
-            data-testid='user-currency-dropdown'
-            type='text'
-            value={userCurrency}
-            onChange={(event) => setUserCurrency(event.target.value)}>
-            {currencyCodes.map(code => {
-              return (
-                <option key={code} value={code} data-testid={code}>{code}</option>
-              )
-            })}
+      <section className='form-container'>
+        <div className="link-to-cards">        
+          <NavLink to='/currency-cards' className='nav'>See All Your Conversions</NavLink>
+          </div>
+        <form className='user-input' data-testid='form' aria-label="currency-input">
+          <label htmlFor='currency-input'></label>
+          <div className='forms'>
+            <select
+              className='user-currency input'
+              aria-label="user-currency-input"
+              name="currency-input"
+              data-testid='user-currency-dropdown'
+              type='text'
+              value={userCurrency}
+              onChange={(event) => setUserCurrency(event.target.value)}>
+              {currencyCodes.map(code => {
+                return (
+                  <option key={code} value={code} data-testid={code}>{code}</option>
+                )
+              })}
+            </select>
+            <input
+              className='user-amount input'
+              aria-label="user-amount-input"
+              name="currency-input"
+              type='number'
+              min='1'
+              max='10000'
+              placeholder='Amount to exchange (up to 10,000)'
+              value={userAmount}
+              onChange={(event) => setUserAmount(event.target.value)}
+            />
+            <select
+              className='new-currency input'
+              aria-label="new-currency-input"
+              name="currency-input"
+              data-testid='new-currency-dropdown'
+              type='text'
+              value={newCurrency}
+              onChange={(event) => setNewCurrency(event.target.value)}>
+              {currencyCodes.map(code => {
+                return (
+                  <option key={code} value={code}>{code}</option>
+                )
+              })}
           </select>
-          <input
-            type='number'
-            min='1'
-            max='10000'
-            className='user-amount'
-            name="currency-input"
-            placeholder='Amount to exchange (up to 10,000)'
-            value={userAmount}
-            onChange={(event) => setUserAmount(event.target.value)}
-          />
-          <select
-            className='new-currency'
-            name="currency-input"
-            data-testid='new-currency-dropdown'
-            type='text'
-            value={newCurrency}
-            onChange={(event) => setNewCurrency(event.target.value)}>
-            {currencyCodes.map(code => {
-              return (
-                <option key={code} value={code}>{code}</option>
-              )
-            })}
-          </select>
+          </div>
           <NavLink onClick={getUserData} to="/currency-cards" className="nav">Get Currency Conversion </NavLink>
         </form>
       </section>
     )
   } else {
     return (
-      <section >
+      <section className='form-container'>
+        <div className="link-to-cards">
         <NavLink to='/currency-cards' className='nav'>See All Your Conversions</NavLink>
-        <form className='user-input' data-testid='form'>
-          <label htmlFor='currency-input'>Currency Data</label>
+        </div>
+        <form className='user-input' data-testid='form' aria-label='currency-input'>
+          <label htmlFor='currency-input'></label>
+        <div className='forms'>
           <select
-            className='user-currency'
+            className='user-currency input'
+            aria-label="user-currency-input"
             name="currency-input"
             data-testid='user-currency-dropdown'
             type='text'
@@ -92,17 +103,19 @@ const Form = (props) => {
             })}
           </select>
           <input
+            className='user-amount input'
+            aria-label="user-amount-input"
+            name="currency-input"
             type='number'
             min='1'
             max='10000'
-            className='user-amount'
-            name="currency-input"
             placeholder='Amount to exchange (up to 10,000)'
             value={userAmount}
             onChange={(event) => setUserAmount(event.target.value)}
           />
           <select
-            className='new-currency'
+            className='new-currency input'
+            aria-label="new-currency-input"
             name="currency-input"
             data-testid='new-currency-dropdown'
             type='text'
@@ -114,6 +127,7 @@ const Form = (props) => {
               )
             })}
           </select>
+          </div>
           <h1>Please complete all fields</h1>
         </form>
       </section>
