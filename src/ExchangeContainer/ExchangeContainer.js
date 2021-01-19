@@ -36,7 +36,9 @@ const ExchangeContainer = ({ fusedData, addBookmarked, deleteCurrencyCard, bookm
         <NavLink to="/" className="nav">Get a new Currency Exchange!</NavLink>
         <NavLink to="/bookmarked-conversions" className="nav">See Your Bookmarked Conversions</NavLink>
         <h1 >Your Currency Conversions</h1>
-        { currencyCards }
+        <div className='cards-container'>
+          { currencyCards }
+        </div>
       </section>
     )
    }
