@@ -15,7 +15,6 @@ The description and requirements for this project in the [Project Spec](https://
 ## How To Access This Application
 
 ### [Visit the deployed site](https://saraho1123.github.io/currency-exchange/)
-(the deployed site does not seem to have my updates for styling at the time I am submitting this README).
 
 *On your terminal:*
 
