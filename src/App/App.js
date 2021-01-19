@@ -91,7 +91,7 @@ const App = () => {
             }}
           />
           <Route
-            exact
+            
             path='/bookmarked-conversions'
             render={() => {
               return (
